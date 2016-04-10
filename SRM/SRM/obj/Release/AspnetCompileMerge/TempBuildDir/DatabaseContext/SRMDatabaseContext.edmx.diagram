@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f4a169526de14c4f9b7db3833e01397b" Name="Diagram1">
+        <EntityTypeShape EntityType="SMSModel.tbBranch" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SMSModel.tbClass" Width="1.5" PointX="0.75" PointY="14.375" />
+        <EntityTypeShape EntityType="SMSModel.tbCommune" Width="1.5" PointX="14.5" PointY="6" />
+        <EntityTypeShape EntityType="SMSModel.tbCountry" Width="1.5" PointX="7.75" PointY="6" />
+        <EntityTypeShape EntityType="SMSModel.tbDistrict" Width="1.5" PointX="12.25" PointY="6" />
+        <EntityTypeShape EntityType="SMSModel.tbEmployee" Width="1.5" PointX="5.75" PointY="5.125" />
+        <EntityTypeShape EntityType="SMSModel.tbParameterSetting" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="SMSModel.tbParent" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="SMSModel.tbPermission" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="SMSModel.tbPhoto" Width="1.5" PointX="0.75" PointY="7.5" />
+        <EntityTypeShape EntityType="SMSModel.tbProvince" Width="1.5" PointX="10" PointY="6" />
+        <EntityTypeShape EntityType="SMSModel.tbStudent" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="SMSModel.tbStudentCategory" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="SMSModel.tbTeamWork" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="SMSModel.tbUser" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="SMSModel.tbUserType" Width="1.5" PointX="5.75" PointY="1.5" />
+        <EntityTypeShape EntityType="SMSModel.tbVillage" Width="1.5" PointX="0.75" PointY="17.875" />
+        <EntityTypeShape EntityType="SMSModel.v_GetStudentList" Width="1.5" PointX="10.75" PointY="0.75" />
+        <AssociationConnector Association="SMSModel.FK_tbStudent_tbClass" />
+        <AssociationConnector Association="SMSModel.FK_tbCommune_tbDistrict" />
+        <AssociationConnector Association="SMSModel.FK_tbProvince_tbCountry" />
+        <AssociationConnector Association="SMSModel.FK_tbDistrict_tbProvince" />
+        <AssociationConnector Association="SMSModel.FKEMP" />
+        <AssociationConnector Association="SMSModel.FK_tbStudent_tbParent" />
+        <AssociationConnector Association="SMSModel.FKPhoto" />
+        <AssociationConnector Association="SMSModel.FK_tbStudent_tbVillage" />
+        <AssociationConnector Association="SMSModel.FKCatID" />
+        <AssociationConnector Association="SMSModel.FKUSERTYPE" />
+        <EntityTypeShape EntityType="SMSModel.v_UserProfile" Width="1.5" PointX="11.375" PointY="9.75" />
+        <AssociationConnector Association="SMSModel.FDPHOTO" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

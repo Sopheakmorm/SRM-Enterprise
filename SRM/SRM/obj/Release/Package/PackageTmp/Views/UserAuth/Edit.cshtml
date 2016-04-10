@@ -1,0 +1,170 @@
+﻿@using SRM.Utils
+@using SRM.Models
+@model SRM.Models.tbUser
+@{
+    ViewBag.Title = "Update User";
+}
+@Html.AntiForgeryToken()
+@{ViewBag.id = Model.Userid;}
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <div class="well">
+            <fieldset>
+                <legend>Update User Information</legend>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.Userid, "User ID")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.TextBoxFor(m => m.Userid, htmlAttributes: new {@class = "k-textbox"})
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Userid)
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.UserName, "User Name")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBoxFor(m => m.UserName)
+                                </div>
+                                @Html.ValidationMessageFor(m => m.UserName)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.UserType, "User Type")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().DropDownListFor(m => m.UserType).BindTo(ViewData["usertype"] as SelectList).OptionLabel("-- Select Type --").DataTextField("Text").DataValueField("Value")
+                                </div>
+                                @Html.ValidationMessageFor(m => m.UserType)
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.empId, "Employee")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().DropDownListFor(m => m.empId).BindTo(ViewData["empList"] as SelectList).OptionLabel("-- Select Employee --").DataValueField("Value").DataTextField("Text")
+                                </div>
+                                @Html.ValidationMessageFor(m => m.empId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.pwd, "Password")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBoxFor(m => m.pwd).HtmlAttributes(new {type = "password"})
+                                </div>
+                                @Html.ValidationMessageFor(m => m.pwd)
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.pwd, "Password")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBox().Name("confirm").HtmlAttributes(new {type = "password"})
+                                </div>
+                                @Html.ValidationMessageFor(m => m.pwd)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-3 col-sm-3 pull-right">
+                                <input type="submit" value="Save" class="btn btn-success pull-right" />
+                                <a class="btn btn-danger pull-right" href="@Url.Action("Index")">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="hidden">
+                    @Html.HiddenFor(m => m.CreatedDate)
+                    @Html.HiddenFor(m => m.Createdby)
+                    @Html.HiddenFor(m => m.isActibe)
+                    @Html.HiddenFor(m => m.createdByName)
+                    @Html.HiddenFor(m => m.isDeleted)
+                </div>
+            </fieldset>
+        </div>
+        <div class="well">
+            <fieldset>
+                <legend>User Permission</legend>
+                <div class="row">
+                    @(Html.Kendo().Grid<fn_GetPermissionListByUserId_Result>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(m => m.MODULE).Title("Module");
+            columns.Bound(m => m.FormType);
+            columns.Bound(m => m.FormName);
+            columns.Bound(m => m.canAdd).ClientTemplate(@Html.CheckBox("Add", "#=canAdd#" != "false", htmlAttributes: new { @onchange = "onChecked(this.checked,'#=formid#','"
+                + @Url.Action("UpdatePermission") + "','"+ EAction.CanAdd +"');" }).ToHtmlString()).Title("Add").Width(75);
+            //columns.Bound(m => m.canUpdate).ClientTemplate(@Html.CheckBox("Update", "#=canUpdate#" != "false", htmlAttributes: new { @onchange = "onChecked(this.checked,#=formid#,'Add');" }).ToHtmlString()).Title("Update").Width(75);
+            //columns.Bound(m => m.canDelete).ClientTemplate(@Html.CheckBox("Delete", "#=canDelete#" != "false", htmlAttributes: new { @onchange = "onChecked(this.checked,#=formid#,'Add');" }).ToHtmlString()).Title("Delete").Width(75);
+            //columns.Bound(m => m.canView).ClientTemplate(@Html.CheckBox("View", "#=canView#" != "false", htmlAttributes: new { @onchange = "onChecked(this.checked,#=formid#,'Add');" }).ToHtmlString()).Title("View").Width(75);
+        })
+        .HtmlAttributes(new { style = "height: 350px;" })
+        .Scrollable()
+        .Groupable()
+        .Sortable()
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Read(read => read.Action("GetPermissionList", "UserAuth",new {id=@Model.Userid}))
+            .PageSize(10)
+        )
+                    )
+                </div>
+            </fieldset>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function onChecked(state, id, url, action) {
+        try {
+            var result;
+            var uid = @Model.Userid;
+            var obj = {id: id,user_id: uid,state:state,action:action}
+            $.ajax({
+                url: url,
+                data: obj,
+                cache: false,
+                type: "POST",
+                success: function (data) {
+                    result = data;
+                },
+                error: function (repose) {
+                    alert("error : " + repose);
+                    result = false;
+                }
+            });
+        } catch (err) {
+            alert("Error" + err.description);
+        }
+    }
+</script>
+
+

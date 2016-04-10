@@ -1,0 +1,444 @@
+﻿@model SRM.Models.tbEmployee
+@using SRM.Utils
+@{
+    ViewBag.Title = "Employee";
+}
+<style type="text/css">
+    .col-md-3 {
+        width: 60%;
+    }
+
+    .col-sm-3 {
+        width: 60%;
+    }
+
+    .k-textbox {
+        width: 100%;
+    }
+
+    .k-datepicker {
+        width: 100%;
+    }
+
+    .control-label {
+        width: 25%;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="well">
+            <fieldset>
+                <legend>Details Employee Information</legend>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.empID, "ID")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.TextBoxFor(m => m.empID, htmlAttributes: new { @class = "k-textbox", @Value = ViewData["id"], @disabled = "disabled" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.empID)
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.Name, "Full Name")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBoxFor(m => m.Name)
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Name)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.IDCard, "ID Card")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBoxFor(m => m.IDCard)
+                                </div>
+                                @Html.ValidationMessageFor(m => m.IDCard)
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.DOB, "Date Of Birth")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().DatePickerFor(m => m.DOB).HtmlAttributes(new { style = "width: 94%" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.DOB)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.Gender, "Gender")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @(Html.Kendo().DropDownList()
+                                      .Name("Gender")
+                                      .DataTextField("Text")
+                                      .DataValueField("Value")
+                                      .BindTo(new List<SelectListItem>()
+                                      {
+                                          new SelectListItem()
+                                          {
+                                              Text = "Male",
+                                              Value = "M"
+                                          },
+                                          new SelectListItem()
+                                          {
+                                              Text = "Female",
+                                              Value = "F"
+                                          }
+                                      })
+                                      .OptionLabel("-- Select Gender --")
+                                      .HtmlAttributes(new { style = "width: 94%" })
+                                    )
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Gender)
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.Position, "Position")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBoxFor(m => m.Position)
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Position)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.ContactPhone, "Contact Phone")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBoxFor(m => m.ContactPhone)
+                                </div>
+                                @Html.ValidationMessageFor(m => m.ContactPhone)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="well">
+                    <fieldset>
+                        <legend>Contact Address</legend>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="box box-warning box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Previous Address</h3>
+                                        <div class="box-tools pull-right">
+                                            <button class="btn btn-box-tool" data-widget="collapse">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div><!-- /.box-tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="form-group row">
+                                            @Html.Label("Country", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+    Html.Kendo().DropDownList().Name("ddlPreCountry")
+        .DataTextField("Text")
+        .DataValueField("Value")
+        .BindTo(ViewData[ViewDataIndex.PreCountry.ToString()] as SelectList)
+        .OptionLabel("-- Select Country --")
+        .Filter("startswith")
+        .SelectedIndex(0)
+        .HtmlAttributes(new { style = "width: 94%" })
+        .Events(e => { e.Select("onPreCountrySelected"); })
+                                                )
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            @Html.Label("Province", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+    Html.Kendo().DropDownList().Name("ddlPreProvince")
+        .DataTextField("Text")
+        .DataValueField("Value")
+        .BindTo(ViewData[ViewDataIndex.PreProvince.ToString()] as SelectList)
+        .OptionLabel("-- Select Province --")
+        .Filter("startswith")
+        .SelectedIndex(0)
+        .HtmlAttributes(new { style = "width: 94%" })
+        .Events(e => { e.Select("onPreProvinceSelected"); })
+                                                )
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            @Html.Label("District", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+    Html.Kendo().DropDownList().Name("ddlPreDistrict")
+        .DataTextField("Text")
+        .DataValueField("Value")
+        .BindTo(ViewData[ViewDataIndex.PreDistrict.ToString()] as SelectList)
+        .OptionLabel("-- Select District --")
+        .Filter("startswith")
+        .SelectedIndex(0)
+        .HtmlAttributes(new { style = "width: 94%" })
+        .Events(e => { e.Select("onPreDistrictSelected"); })
+                                                )
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            @Html.Label("Commune", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+    Html.Kendo().DropDownList().Name("ddlPreCommune")
+        .DataTextField("Text")
+        .DataValueField("Value")
+        .BindTo(ViewData[ViewDataIndex.PreCommune.ToString()] as SelectList)
+        .OptionLabel("-- Select Commune --")
+        .Filter("startswith")
+        .SelectedIndex(0)
+        .HtmlAttributes(new { style = "width: 94%" })
+        .Events(e => { e.Select("onPreCommuneSelected"); })
+                                                )
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            @Html.Label("Village", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+    Html.Kendo().DropDownListFor(m => m.PerAddress)
+        .Name("PerAddress")
+        .DataTextField("Text")
+        .DataValueField("Value")
+        .BindTo(ViewData[ViewDataIndex.PreVillage.ToString()] as SelectList)
+        .OptionLabel("-- Select Village --")
+        .Filter("startswith")
+        .SelectedIndex(0)
+        .HtmlAttributes(new { style = "width: 94%" })
+                                                )
+                                            </div>
+                                        </div>
+
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="box box-warning box-solid">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Current Address</h3>
+                                        <div class="box-tools pull-right">
+                                            <button class="btn btn-box-tool" data-widget="collapse">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div><!-- /.box-tools -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="form-group row">
+                                            @Html.Label("Country", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+        Html.Kendo().DropDownList().Name("ddlCurCountry")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .BindTo(ViewData[ViewDataIndex.CurCountry.ToString()] as SelectList)
+            .OptionLabel("-- Select Country --")
+            .Filter("startswith")
+            .SelectedIndex(0)
+            .HtmlAttributes(new { style = "width: 94%" })
+            .Events(e => { e.Select("onCurCountrySelected"); })
+                                                )
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            @Html.Label("Province", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+        Html.Kendo().DropDownList().Name("ddlCurProvince")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .BindTo(ViewData[ViewDataIndex.CurProvince.ToString()] as SelectList)
+            .OptionLabel("-- Select Province --")
+            .Filter("startswith")
+            .SelectedIndex(0)
+            .HtmlAttributes(new { style = "width: 94%" })
+            .Events(e => { e.Select("onCurProvinceSelected"); })
+                                                )
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            @Html.Label("District", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+        Html.Kendo().DropDownList().Name("ddlCurDistrict")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .BindTo(ViewData[ViewDataIndex.CurDistrict.ToString()] as SelectList)
+            .OptionLabel("-- Select District --")
+            .Filter("startswith")
+            .SelectedIndex(0)
+            .HtmlAttributes(new { style = "width: 94%" })
+            .Events(e => { e.Select("onCurDistrictSelected"); })
+                                                )
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            @Html.Label("Commune", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+        Html.Kendo().DropDownList().Name("ddlCurCommune")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .BindTo(ViewData[ViewDataIndex.CurCommune.ToString()] as SelectList)
+            .OptionLabel("-- Select Commune --")
+            .Filter("startswith")
+            .SelectedIndex(0)
+            .HtmlAttributes(new { style = "width: 94%" })
+            .Events(e => { e.Select("onCurCommuneSelected"); })
+                                                )
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            @Html.Label("Village", htmlAttributes: new { @class = "control-label col-md-3 col-sm-3" })
+                                            <div class="col-md-3 col-sm-3">
+                                                @(
+        Html.Kendo().DropDownListFor(m => m.CurrentAddress)
+            .Name("CurrentAddress")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .BindTo(ViewData[ViewDataIndex.PreVillage.ToString()] as SelectList)
+            .OptionLabel("-- Select Village --")
+            .Filter("startswith")
+            .SelectedIndex(0)
+            .HtmlAttributes(new { style = "width: 94%" })
+                                                )
+                                            </div>
+                                        </div>
+
+                                    </div><!-- /.box-body -->
+                                </div><!-- /.box -->
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-3 col-sm-3 pull-right">
+                                <input type="submit" value="Save" class="btn btn-success pull-right" disabled="disabled" />
+                                <a class="btn btn-danger pull-right" href="@Url.Action("Index")">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    // For Previous Address
+    function onPreCountrySelected(e) {
+        try {
+            var data = this.dataItem(e.item);
+            getDataFromServer(data.Value, '@Url.Action("GetProvinceListById")', 'ddlPreProvince', 'Province');
+        } catch (err) {
+            alert(err.description);
+        }
+    }
+    function onPreProvinceSelected(e) {
+        try {
+            var data = this.dataItem(e.item);
+            getDataFromServer(data.Value, '@Url.Action("GetDistrictById")', 'ddlPreDistrict', 'District');
+        } catch (err) {
+            alert(err.description);
+        }
+    }
+    function onPreDistrictSelected(e) {
+        try {
+            var data = this.dataItem(e.item);
+            getDataFromServer(data.Value, '@Url.Action("GetCommuneById")', 'ddlPreCommune', 'Commune');
+        } catch (err) {
+            alert(err.description);
+        }
+    }
+    function onPreCommuneSelected(e) {
+        try {
+            var data = this.dataItem(e.item);
+            getDataFromServer(data.Value, '@Url.Action("GetVillageById")', 'PerAddress', 'Village');
+        } catch (err) {
+            alert(err.description);
+        }
+    }
+    // End Previous Address
+
+    // For Current Address
+    function onCurCommuneSelected(e) {
+        try {
+            var data = this.dataItem(e.item);
+            getDataFromServer(data.Value, '@Url.Action("GetVillageById")', 'CurrentAddress', 'Village');
+        } catch (err) {
+            alert(err.description);
+        }
+    }
+    function onCurDistrictSelected(e) {
+        try {
+            var data = this.dataItem(e.item);
+            getDataFromServer(data.Value, '@Url.Action("GetCommuneById")', 'ddlCurCommune', 'Commune');
+        } catch (err) {
+            alert(err.description);
+        }
+    }
+    function onCurProvinceSelected(e) {
+        try {
+            var data = this.dataItem(e.item);
+            getDataFromServer(data.Value, '@Url.Action("GetDistrictById")', 'ddlCurDistrict', 'District');
+        } catch (err) {
+            alert(err.description);
+        }
+    }
+    function onCurCountrySelected(e) {
+        try {
+            var data = this.dataItem(e.item);
+            getDataFromServer(data.Value, '@Url.Action("GetProvinceListById")', 'ddlCurProvince', 'Province');
+        } catch (err) {
+            alert(err.description);
+        }
+    }
+    // End Current Address
+
+    // For initialisation
+    $(function () {
+        initdll('ddlPreDistrict');
+        initdll('ddlPreProvince');
+        initdll('ddlPreCommune');
+        initdll('PerAddress');
+        initdll('ddlCurProvince');
+        initdll('ddlCurDistrict');
+        initdll('ddlCurCommune');
+        initdll('CurrentAddress');
+    });
+    function initdll(id) {
+        $("#" + id).data("kendoDropDownList").enable(false);
+    }
+</script>
+
+

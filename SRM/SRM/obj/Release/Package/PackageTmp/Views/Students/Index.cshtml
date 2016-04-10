@@ -1,0 +1,152 @@
+﻿@using GridMvc.Html
+@using SRM.Models
+@using SRM.Utils
+
+@{
+    ViewBag.Title = "Student Information";
+}
+@{
+    ViewBag.Breadcrumb = new Breadcrumb(new Crumb[] {
+        new Crumb("Dashboard", @Url.Action("Index","AdminLte"), "fa-dashboard"),
+        new Crumb("Student",@Url.Action("Index","Students"),"fa fa-user-md")
+    });
+}
+<style>
+    .k-widget .templateCell {
+        overflow: visible;
+    }
+</style>
+<script>
+    function onSelectBookValue(e) {
+        var dataItem = this.dataItem(e.item.index());
+        var bookId = dataItem.Value;
+        index = bookId;
+    }
+    function initMenus(e) {
+        $(".templateCell").each(function () {
+            eval($(this).children("script").last().html());
+        });
+    }
+</script>
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+        <small>@ViewBag.TitleSmall</small>
+    </h1>
+    @Html.Partial("_AdminLteBreadcrumb")
+    <div class="p_dialog" id="p_dialog">
+
+    </div>
+</section>
+<section class="content">
+    @(Html.Kendo().Grid<v_GetStudentList>()
+                               .Name("grid")
+                               .Columns(columns =>
+                               {
+                               columns.Bound(c => c.stdID).Title("Student ID").Width(110);
+                               columns.Bound(c => c.Name).Title("Student Name").Width(200);
+                               columns.Bound(c => c.Gender).Width(70);
+                               columns.Bound(c => c.Class).Width(70);
+                               columns.Bound(c => c.DOB).Title("Date Of Birth").Width(100);
+                               columns.Bound(c => c.ContactPhone).Title("Contact Phone").Width(110);
+                               columns.Bound(c => c.Current_Address).Title("Address");
+                               columns.Bound(c => c.stdID).ClientTemplate(string.Format(@"{0}  {1}  {2}",
+                                   $@"<a data-ajax='true' data-ajax-method='GET' data-ajax-mode=replace' data-ajax-update='{SingletonObject.mainPanelClass()}' href='{Url.Action("Edit", "Students", new { id = "#=stdID#" })}' id='edit_#=stdID#'><i class='fa fa-cog'></i></a>",
+                                   @Html.ActionLink("<i class='fa fa-trash-o'></i>", "Delete", new { id = "#=stdID#" }, new { onclick = "showModal(#=stdID#);return false;" }).ToHtmlString(),
+                                   //@Html.ActionLink("<i class='fa fa-eye'></i>", "Details", new {id = "#=stdID#"}).ToHtmlString()
+                                   $@"<a data-ajax='true' data-ajax-method='GET' data-ajax-mode='insert' data-ajax-update='.p_dialog' href='{Url.Action("Details", "Students", new { id = "#=stdID#" })}' id='detail_#=stdID#'><i class='fa fa-eye'></i></a>"
+                                   )).Title("Action").Width(80);
+                               columns.Template(@<text></text>).HtmlAttributes(new { @class = "templateCell" }).ClientTemplate(
+                                                                      Html.Kendo().Menu()
+                                                                          .Name("menu_#=stdID#")
+                                                                          .Items(its =>
+                                                                          {
+                                                                              its.Add().Text("Menu").Items(nested =>
+                                                                              {
+                                                                                  nested.Add().Text("<i class='fa fa-cog'></i>  Update");
+                                                                                  nested.Add().Text("<i class='fa fa-trash-o'></i>  Delete");
+                                                                                  nested.Add().Text("<i class='fa fa-eye'></i>  Detail");
+                                                                                  //nested.Add().Text(@Ajax.ActionLink("Tes", "Create", null, new AjaxOptions(), new {@class = "k-link k-item k-state-default"}).ToHtmlString());
+                                                                              });
+                                                                          })
+                                                                          .ToClientTemplate().ToHtmlString()
+                                       ).Title("Action").Width(96).Visible(false);
+                               }).ToolBar(toolBar =>
+                               {
+                                   toolBar.Template(@<text>
+                                    <div class="toolbar">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                @Ajax.ActionLink("Register", "Create", "Students", null,
+                                                    SingletonObject._ajaxOption(), new { @class = "k-button k-button-icontext col-md-2" })
+                                                <div class="input-group col-md-2">
+                                                    <input type="text" class="k-textbox" id='FieldFilter' placeholder="Search for...">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 pull-left">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </text>);
+                               })
+                               .HtmlAttributes(new { style = "height: 550px;" })
+                               .Scrollable()
+                               //.Groupable()
+                               .Sortable()
+                               .Pageable(pageable => pageable
+                                   .Refresh(true)
+                                   .PageSizes(true)
+                                   .ButtonCount(5))
+                               .DataSource(dataSource => dataSource
+                                   .Ajax()
+                                   .Read(read => read.Action("StudentRead", "Students"))
+                                   .PageSize(20)
+                               ).Events(ev => ev.DataBound("initMenus"))
+    )
+</section>
+@{
+    Html.RenderPartial("_modalConfirmation");
+}
+<script type="text/javascript">
+    function showModal(id) {
+        try {
+            $.when(showConfirmationWindow('Are you sure to delete this student ?')).then(function (confirmed) {
+                if (confirmed) {
+                    $.ajax({
+                        url: '@Url.Action("Delete")',
+                        data: { id: id },
+                        cache: false,
+                        type: "POST",
+                        success: function (data) {
+                            if (JSON.stringify(data) !== "[]" && data) {
+                                $('#grid').data('kendoGrid').dataSource.page(1);
+                                $('#grid').data('kendoGrid').dataSource.read();
+                            } else {
+                                alert('The use student could not delete !!');
+                            }
+                        },
+                        error: function (reponse) {
+                            alert("error : " + reponse);
+                        }
+                    });
+                }
+            });
+        } catch (err) {
+            alert("Error : " + err.description);
+        }
+    }
+
+    var index = 2;
+    $(document).ready(function () {
+        $("#FieldFilter").keyup(function () {
+            var value = $("#FieldFilter").val();
+            var grid = $("#grid").data("kendoGrid");
+            if (value) {
+                grid.dataSource.filter({ field: "Name", operator: "contains", value: value });
+            } else {
+                grid.dataSource.filter({});
+            }
+        });
+    });
+</script>
+

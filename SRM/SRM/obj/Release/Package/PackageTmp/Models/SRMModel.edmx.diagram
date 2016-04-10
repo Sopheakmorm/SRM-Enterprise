@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e7f344565c9743468347abeafdf95599" Name="Diagram1">
+        <EntityTypeShape EntityType="SRMModel.tbBranch" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="SRMModel.tbClass" Width="1.5" PointX="5.75" PointY="13.875" />
+        <EntityTypeShape EntityType="SRMModel.tbCommune" Width="1.5" PointX="17.5" PointY="1.25" />
+        <EntityTypeShape EntityType="SRMModel.tbCountry" Width="1.5" PointX="10.75" PointY="1.25" />
+        <EntityTypeShape EntityType="SRMModel.tbDistrict" Width="1.5" PointX="15.25" PointY="1.25" />
+        <EntityTypeShape EntityType="SRMModel.tbEmployee" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="SRMModel.tbForm" Width="1.5" PointX="2.75" PointY="10" />
+        <EntityTypeShape EntityType="SRMModel.tbGeneralParameter" Width="1.5" PointX="10.75" PointY="5" />
+        <EntityTypeShape EntityType="SRMModel.tbParameterSetting" Width="1.5" PointX="7.75" PointY="11" />
+        <EntityTypeShape EntityType="SRMModel.tbParent" Width="1.5" PointX="5.75" PointY="10.375" />
+        <EntityTypeShape EntityType="SRMModel.tbPermission" Width="1.5" PointX="10.75" PointY="9" />
+        <EntityTypeShape EntityType="SRMModel.tbPermissionByForm" Width="1.5" PointX="12.75" PointY="5" />
+        <EntityTypeShape EntityType="SRMModel.tbPhoto" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="SRMModel.tbProvince" Width="1.5" PointX="13" PointY="1.25" />
+        <EntityTypeShape EntityType="SRMModel.tbStudent" Width="1.5" PointX="8" PointY="4.125" />
+        <EntityTypeShape EntityType="SRMModel.tbStudentCategory" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="SRMModel.tbTeamWork" Width="1.5" PointX="12.75" PointY="10" />
+        <EntityTypeShape EntityType="SRMModel.tbUser" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="SRMModel.tbUserType" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="SRMModel.tbVillage" Width="1.5" PointX="7.75" PointY="1" />
+        <EntityTypeShape EntityType="SRMModel.v_EmplyeeList" Width="1.5" PointX="0.75" PointY="14" />
+        <EntityTypeShape EntityType="SRMModel.v_GetClassList" Width="1.5" PointX="2.75" PointY="14" />
+        <EntityTypeShape EntityType="SRMModel.v_GetPermissionByFormList" Width="1.5" PointX="9.75" PointY="14" />
+        <EntityTypeShape EntityType="SRMModel.v_GetStudentList" Width="1.5" PointX="11.75" PointY="14" />
+        <EntityTypeShape EntityType="SRMModel.v_GetUserList" Width="1.5" PointX="13.75" PointY="14" />
+        <EntityTypeShape EntityType="SRMModel.v_UserProfile" Width="1.5" PointX="14.75" PointY="5" />
+        <AssociationConnector Association="SRMModel.FK_tbStudent_tbClass" />
+        <AssociationConnector Association="SRMModel.FK_tbCommune_tbDistrict" />
+        <AssociationConnector Association="SRMModel.FK_tbProvince_tbCountry" />
+        <AssociationConnector Association="SRMModel.FK_tbDistrict_tbProvince" />
+        <AssociationConnector Association="SRMModel.FDPHOTO" />
+        <AssociationConnector Association="SRMModel.FKEMP" />
+        <AssociationConnector Association="SRMModel.FK_tbStudent_tbParent" />
+        <AssociationConnector Association="SRMModel.FKPhoto" />
+        <AssociationConnector Association="SRMModel.FKCatID" />
+        <AssociationConnector Association="SRMModel.FKUSERTYPE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

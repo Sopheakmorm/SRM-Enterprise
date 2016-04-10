@@ -1,0 +1,33 @@
+﻿@using System.Globalization
+@model SRM.Models.v_GetClassList
+<div class="dialog_info"></div>
+<script type="text/javascript">
+    var modal = new bs.ModalDialog({
+        /* optional parameters */
+        backdrop: 'static',
+        keyboard: false,
+        appendTo: '.dialog_info',
+        headerText: 'Detail Inoformation',
+        content:    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","ID :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.ClassID.ToString(CultureInfo.InvariantCulture), htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Class Name :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Name, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Capacity :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Capacity.ToString(), htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Location :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Location, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Status :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Status, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Create Date :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.CreatedDate, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Code :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.code, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>',
+        actionButtonText: 'OK',
+        actionButtonClass: 'btn-primary',
+        contentTemplateId: null,
+        bindingData: null,
+        largeModal: false
+    });
+
+    modal.show(function() {
+        console.log('modal opened');
+    });
+
+    modal.on('submitted', function (e) {
+        console.log('modal closed');
+        modal.hide();
+    });
+</script>

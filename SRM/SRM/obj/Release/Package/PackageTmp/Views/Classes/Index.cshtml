@@ -1,0 +1,102 @@
+﻿@using GridMvc.Html
+@using SRM.Models
+@using SRM.Utils
+
+@{
+    ViewBag.Title = "Class Information";
+}
+@{
+    ViewBag.Breadcrumb = new Breadcrumb(new Crumb[] {
+        SingletonObject.crumbAdminLte_Index(Url),
+        SingletonObject.crumbClass_Index(Url)
+    });
+}
+<style>
+    .k-widget .templateCell {
+        overflow: visible;
+    }
+</style>
+<script>
+    function initMenus(e) {
+        $(".templateCell").each(function () {
+            eval($(this).children("script").last().html());
+        });
+    }
+</script>
+<section class="content-header">
+    <h1>
+        @ViewBag.Title
+        <small>@ViewBag.TitleSmall</small>
+    </h1>
+    @Html.Partial("_AdminLteBreadcrumb")
+    <div class="p_dialog" id="p_dialog">
+
+    </div>
+</section>
+<section class="content">
+    @(Html.Kendo().Grid<v_GetClassList>()
+                               .Name("grid")
+                               .Columns(columns =>
+                               {
+                                   columns.Bound(c => c.code).Title("Code").Width(100);
+                               columns.Bound(c => c.Name).Title("Class Title").Width(250);
+                               columns.Bound(c => c.Capacity).Width(70);
+                               columns.Bound(c => c.Location);
+                               columns.Bound(c => c.Status).Width(100);
+                               columns.Bound(c => c.CreatedDate).Title("Create Date").Width(110);
+                               columns.Bound(c => c.ClassID).ClientTemplate(string.Format(@"{0}  {1}  {2}",
+                                   $@"<a data-ajax='true' data-ajax-method='GET' data-ajax-mode=replace' data-ajax-update='{SingletonObject.mainPanelClass()}' href='{Url.Action("Edit", "Classes", new { id = "#=ClassID#" })}' id='edit_#=ClassID#'><i class='fa fa-cog'></i></a>",
+                                   @Html.ActionLink("<i class='fa fa-trash-o'></i>", "Delete", new { id = "#=ClassID#" }, new { onclick = "showModal(#=ClassID#);return false;" }).ToHtmlString(),
+                                   $@"<a data-ajax='true' data-ajax-method='GET' data-ajax-mode='insert' data-ajax-update='.p_dialog' href='{Url.Action("Details", "Classes", new { id = "#=ClassID#" })}' id='detail_#=ClassID#'><i class='fa fa-eye'></i></a>"
+                                   )).Title("Action").Width(80);
+                               }).ToolBar(toolBar => toolBar.Template(Ajax.ActionLink("Create", "Create", "Classes", null,
+                                   SingletonObject._ajaxOption(), new { @class = "k-button k-button-icontext" }).ToHtmlString()))
+                               .HtmlAttributes(new { style = "height: 550px;" })
+                               .Scrollable()
+                               .Groupable()
+                               .Sortable()
+                               .Pageable(pageable => pageable
+                                   .Refresh(true)
+                                   .PageSizes(true)
+                                   .ButtonCount(5))
+                               .DataSource(dataSource => dataSource
+                                   .Ajax()
+                                   .Read(read => read.Action("GetClassList", "Classes"))
+                                   .PageSize(20)
+                               ).Events(ev => ev.DataBound("initMenus"))
+)
+</section>
+@{
+    Html.RenderPartial("_modalConfirmation");
+}
+<script type="text/javascript">
+    function showModal(id) {
+        try {
+            $.when(showConfirmationWindow('Are you sure to delete this Class ?')).then(function (confirmed) {
+                if (confirmed) {
+                    $.ajax({
+                        url: '@Url.Action("Delete","Classes")',
+                        data: { id: id },
+                        cache: false,
+                        type: "POST",
+                        success: function (data) {
+                            if (JSON.stringify(data) !== "[]" && data) {
+                                $('#grid').data('kendoGrid').dataSource.page(1);
+                                $('#grid').data('kendoGrid').dataSource.read();
+                            } else {
+                                alert('The selected class could not delete !!');
+                            }
+                        },
+                        error: function (reponse) {
+                            alert("error : " + reponse.toString());
+                        }
+                    });
+                }
+            });
+        } catch (err) {
+            alert("Error : " + err.description);
+        }
+    }
+
+</script>
+

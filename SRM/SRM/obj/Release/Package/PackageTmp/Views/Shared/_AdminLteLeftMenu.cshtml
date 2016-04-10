@@ -1,0 +1,153 @@
+﻿@using SRM.Utils
+@*
+    This partial controls the left menu of the AdminLTE dashboard and is called automatically by _AdminLteLayout
+       This is where you can add, modify, or remove navigation options in your app
+       TODO: This preserves the links as-is for the demo, which lead to broken pages!
+       It's up to you to make sure these links either get deleted or lead somewhere REAL!
+*@
+
+
+@{
+    Layout = null;
+}
+<style>
+    .item > a::before {
+    font-family: FontAwesome;
+    content: "\f013";
+}
+</style>
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="@Url.Content("~/Content/2_001.png")" class="img-circle" alt="User Image"/>
+            </div>
+            <div class="pull-left info">
+                <p>@Session[SessionIndex.UserName.ToString()]</p>
+                <a href="#"><i class="fa fa-circle text-success"></i>@Session[SessionIndex.isOnlined.ToString()]</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                <span class="input-group-btn">
+                    <button type='submit' name='search' id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="active treeview">
+                @Ajax.ActionLink(
+                    " Dashboard",
+                    "Index",
+                    "AdminLte",
+                    SingletonObject._ajaxOption())
+
+            </li>
+            <li class="treeview">
+                <a>
+                    <i class="fa fa-user-md"></i>
+                    <span>Student</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="item">
+                        @Ajax.ActionLink(
+                            " Student Information",
+                            "Index",
+                            "Students",
+                            SingletonObject._ajaxOption())
+                    </li>
+                    <li class="item">
+                        @Ajax.ActionLink(
+                            " Register Student",
+                            "Create",
+                            "Students",
+                            SingletonObject._ajaxOption())
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-cogs"></i> <span>Parameter Setting</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-location-arrow"></i> <span>Location</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="pages/forms/general.html"><i class="fa fa-cog"></i> Country</a></li>
+                            <li><a href="pages/forms/advanced.html"><i class="fa fa-cog"></i> Province</a></li>
+                            <li><a href="pages/forms/editors.html"><i class="fa fa-cog"></i> District</a></li>
+                            <li><a href="pages/forms/editors.html"><i class="fa fa-cog"></i> Commiune</a></li>
+                            <li><a href="pages/forms/editors.html"><i class="fa fa-cog"></i> Village</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-building-o"></i> <span> Building</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="item">
+                                @Ajax.ActionLink(
+                                    " Class Setup",
+                                    "Index",
+                                    "Classes",
+                                    SingletonObject._ajaxOption())
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-users"></i> <span> User Setting</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="item">
+                                @Ajax.ActionLink(
+                                    " User Setup",
+                                    "Index",
+                                    "UserAuth",
+                                    SingletonObject._ajaxOption())
+                            </li>
+                            <li class="item">
+                                @Ajax.ActionLink(
+                                    " Employee Setup",
+                                    "Index",
+                                    "tbEmployees",
+                                    SingletonObject._ajaxOption())
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="pages/calendar.html">
+                    <i class="fa fa-calendar"></i> <span>Calendar</span>
+                    <small class="label pull-right bg-red">3</small>
+                </a>
+            </li>
+            <li>
+                <a href="pages/mailbox/mailbox.html">
+                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                    <small class="label pull-right bg-yellow">12</small>
+                </a>
+            </li>
+        </ul>
+        <script>
+    function changediv() {alert('changing');var obj = document.getElementsByName("breadcrumb"); var h = @Html.Partial("_AdminLteBreadcrumb").ToHtmlString(); obj.html(HAVE_METADATA);}
+        </script>
+    </section>
+<!-- /.sidebar -->
+</aside>

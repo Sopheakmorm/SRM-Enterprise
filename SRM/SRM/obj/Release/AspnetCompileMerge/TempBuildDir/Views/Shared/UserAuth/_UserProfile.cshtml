@@ -1,0 +1,87 @@
+﻿@using System.Drawing
+@using SRM.DataAccess.UserAuth
+@using SRM.Utils
+<link href="~/Content/ControlStyle.css" rel="stylesheet" />
+<div class="modal fade" id="add" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        @{ var result = UserAuthDataAccess.GetUserProfile(Session[SessionIndex.userID.ToString()]);}
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><strong> @ViewBag.ModalTitle</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-4 label-alignment text-primary">User Name :</label>
+                                <label class="col-sm-8 TextBox-alignment text-success">@result.UserName</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-4 label-alignment text-primary">Created Date :</label>
+                                <label class="col-sm-8 TextBox-alignment text-success">
+                                    @{
+                                        var cDate = result
+                                            .CreatedDate != null ? Convert.ToDateTime(result.CreatedDate).ToString("D") :
+                                            string.Empty;
+                                    }@cDate
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-4 label-alignment text-primary">Gender :</label>
+                                <label class="col-sm-8 TextBox-alignment text-success">@result.Gender</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-4 label-alignment text-primary">User Type :</label>
+                                <label class="col-sm-8 TextBox-alignment text-success">@result.UserType</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-4 label-alignment text-primary">Position :</label>
+                                <label class="col-sm-8 TextBox-alignment text-success">@result.Position</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-4 label-alignment text-primary">Contact Phone :</label>
+                                <label class="col-sm-8 TextBox-alignment text-success">@result.ContactPhone</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-4 label-alignment text-primary">Password :</label>
+                                <input type="password" class="col-sm-8 TextBox-alignment text-success form-control" value="@result.UserName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-4 label-alignment text-primary">Confirm :</label>
+                                <input type="password" class="col-sm-8 TextBox-alignment text-success form-control" value="@result.UserName" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label class="col-sm-4 label-alignment text-primary">Photo :</label>
+                                <img src="@Session[SessionIndex.userImagePath.ToString()]" class="img-circle" alt="@result.UserName 's Photo unavailable" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="loadToSuccess" type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+﻿@using SRM.Models
+@using SRM.Utils
+<div class="well">
+    <fieldset>
+        <legend>User Information</legend>
+        @(Html.Kendo().Grid<v_GetUserList>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(m => m.Userid);
+            columns.Bound(m => m.UserType);
+            columns.Bound(m => m.UserName);
+            columns.Bound(m => m.Emp_name);
+            columns.Bound(m => m.CreatedDate);
+            columns.Bound(m => m.isActibe).Title("Active").ClientTemplate(@Html.CheckBox("chk", "#=isActibe#" != "false", new { @disabled = "disabled" }).ToHtmlString());
+            columns.Bound(c => c.Userid).ClientTemplate(string.Format(@"{0}  {1}  {2}",
+                    @Html.ActionLink("<i class='fa fa-cog'></i>", "Edit", new { id = "#=Userid#" }).ToHtmlString(),
+                    @Html.ActionLink("<i class='fa fa-trash-o'></i>", "Edit", new { id = "#=Userid#" }, new { onclick = "showModal(#=Userid#);return false;" }).ToHtmlString(),
+                    @Html.ActionLink("<i class='fa fa-eye'></i>", "Detail", new { id = "#=Userid#" }).ToHtmlString())).Title("Action").Width(80);
+
+        }).ToolBar(toolBar => toolBar.Template(Ajax.ActionLink("Create User", "Create", "UserAuth", null,
+                  SingletonObject._ajaxOption(), new { @class = "k-button k-button-icontext" }).ToHtmlString()))
+        .HtmlAttributes(new { style = "height: 550px;" })
+        .Scrollable()
+        .Groupable()
+        .Sortable()
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Read(read => read.Action("GetUserList", "UserAuth"))
+            .PageSize(10)
+        )
+        )
+    </fieldset>
+</div>
+@{
+    Html.RenderPartial("_modalConfirmation");
+}
+<script type="text/javascript">
+    function deleteConfirm() {
+        try {
+            var result = showModal();
+            alert(result);
+            if (result) {
+                alert('Deleted');
+            } else {
+                alert('Cancelled');
+            }
+        } catch (err) {
+            alert("Error : " + err.description);
+        }
+    }
+
+    function showModal(id) {
+        try {
+            $.when(showConfirmationWindow('Are you sure?')).then(function(confirmed) {
+
+                if (confirmed) {
+                    $.ajax({
+                        url: '@Url.Action("Delete")',
+                        data: { id: id },
+                        cache: false,
+                        type: "POST",
+                        success: function (data) {
+                            if (JSON.stringify(data) !== "[]" && data) {
+                                $('#grid').data('kendoGrid').dataSource.page(1);
+                                $('#grid').data('kendoGrid').dataSource.read();
+                            } else {
+                                alert('This User could not delete !!');
+                            }
+                        },
+                        error: function (reponse) {
+                            alert("error : " + reponse);
+                        }
+                    });
+                }
+            });
+        } catch (err) {
+            alert("Error : " + err.description);
+        }
+    }
+    function deleteRecord(id, url) {
+        var result = false;
+        return result;
+    }
+</script>

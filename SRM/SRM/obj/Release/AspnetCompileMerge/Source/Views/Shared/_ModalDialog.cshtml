@@ -1,0 +1,53 @@
+﻿
+<div class="modal fade" id="add" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4><strong> @ViewBag.ModalTitle</strong></h4>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#primary">Primary Information</a></li>
+                    <li><a data-toggle="tab" href="#contact">Contact Detail</a></li>
+                    <li><a data-toggle="tab" href="#audit">Audit</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="primary" class="tab-pane fade in active">
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">Number</label>
+                            <input name="number" class="form-control" type="text" placeholder="Number...." disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Customer Name :</label>
+                            <input name="name" class="form-control" id="message-text" placeholder="Name here..."></input>
+                        </div>
+                    </div>
+                    <div id="contact" class="tab-pane fade">
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Contact Address :</label>
+                            <input name="address" class="form-control" id="message-text" placeholder="Address here..."></input>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Contact Phone :</label>
+                            <input name="phone" class="form-control" id="message-text" placeholder="Phone here..."></input>
+                        </div>
+                    </div>
+                    <div id="audit" class="tab-pane fade">
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Inputer :</label>
+                            <input class="form-control" type="text" placeholder="Number...." disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="loadToSuccess" type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

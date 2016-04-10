@@ -1,0 +1,1898 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SRMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbBranch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Code" Type="nvarchar" MaxLength="3" />
+          <Property Name="Address" Type="nvarchar" MaxLength="5" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="BuiltDate" Type="date" />
+          <Property Name="Manager" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbClass">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Capacity" Type="smallint" />
+          <Property Name="Location" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="code" Type="nvarchar" MaxLength="20" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbCommune">
+          <Key>
+            <PropertyRef Name="ComID" />
+          </Key>
+          <Property Name="ComID" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="DisID" Type="nvarchar" MaxLength="5" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbCountry">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbDistrict">
+          <Key>
+            <PropertyRef Name="DisID" />
+          </Key>
+          <Property Name="DisID" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="ProID" Type="nvarchar" MaxLength="3" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbEmployee">
+          <Key>
+            <PropertyRef Name="empID" />
+          </Key>
+          <Property Name="empID" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDCard" Type="nvarchar" MaxLength="20" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+          <Property Name="CurrentAddress" Type="nvarchar" MaxLength="5" />
+          <Property Name="PerAddress" Type="nvarchar" MaxLength="5" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Position" Type="nvarchar" MaxLength="200" />
+          <Property Name="photo" Type="int" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="isActivated" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbForm">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FormType" Type="nvarchar" MaxLength="200" />
+          <Property Name="module" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbGeneralParameter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Parameter_type" Type="nvarchar" MaxLength="200" />
+          <Property Name="Parameter_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreateBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreatedBy_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="modifiedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="modifiedDate" Type="datetime" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbParameterSetting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="20" />
+          <Property Name="Descriptions" Type="nvarchar(max)" />
+          <Property Name="CREATEBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Table" Type="varchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tbParent">
+          <Key>
+            <PropertyRef Name="ParID" />
+          </Key>
+          <Property Name="ParID" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MotherName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbPermission">
+          <Key>
+            <PropertyRef Name="pID" />
+          </Key>
+          <Property Name="pID" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermissionType" Type="nvarchar" MaxLength="200" />
+          <Property Name="canAdd" Type="bit" />
+          <Property Name="canUpdate" Type="bit" />
+          <Property Name="canDelete" Type="bit" />
+          <Property Name="canView" Type="bit" />
+          <Property Name="createdby" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="modifiedDate" Type="datetime" />
+          <Property Name="modifiedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="note" Type="nvarchar(max)" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tbPermissionByForm">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+          <Property Name="canDelete" Type="bit" />
+          <Property Name="canAdd" Type="bit" />
+          <Property Name="canUpdate" Type="bit" />
+          <Property Name="canView" Type="bit" />
+          <Property Name="FormID" Type="int" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbPhoto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreateBy_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="isdefault" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbProvince">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="couID" Type="nvarchar" MaxLength="3" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbStudent">
+          <Key>
+            <PropertyRef Name="stdID" />
+          </Key>
+          <Property Name="stdID" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="7" />
+          <Property Name="ClassID" Type="int" />
+          <Property Name="ParID" Type="numeric" Precision="20" Scale="0" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="CurrenctAddress" Type="nvarchar" MaxLength="5" />
+          <Property Name="PreAddress" Type="nvarchar" MaxLength="5" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="catID" Type="nvarchar" MaxLength="3" />
+          <Property Name="CreatedBy_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="Photo" Type="int" />
+          <Property Name="HouseNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Father_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Mother_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbStudentCategory">
+          <Key>
+            <PropertyRef Name="catID" />
+          </Key>
+          <Property Name="catID" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="Descriptions" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedBy_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbTeamWork">
+          <Key>
+            <PropertyRef Name="TeamWorkID" />
+          </Key>
+          <Property Name="TeamWorkID" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="AssignedByID" Type="nvarchar" MaxLength="20" />
+          <Property Name="Deadline" Type="datetime" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SMS.dbo.tbTest1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tbTest1">
+          <Property Name="id" Type="int" />
+        </EntityType>-->
+        <EntityType Name="tbUser">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+          <Property Name="pwd" Type="nvarchar(max)" />
+          <Property Name="Createdby" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="modifiedby" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="modifiedDate" Type="datetime" />
+          <Property Name="createdByName" Type="nvarchar" MaxLength="200" />
+          <Property Name="empId" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="isActibe" Type="bit" />
+          <Property Name="isDeleted" Type="bit" />
+          <Property Name="keeplogin" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbUserType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="200" />
+          <Property Name="Createdby" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="modifiedby" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="modifiedDate" Type="datetime" />
+          <Property Name="createdByName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tbVillage">
+          <Key>
+            <PropertyRef Name="ViID" />
+          </Key>
+          <Property Name="ViID" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+          <Property Name="CommuneID" Type="nvarchar" MaxLength="5" />
+          <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SMS.dbo.v_EmplyeeList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_EmplyeeList">
+          <Key>
+            <PropertyRef Name="empID" />
+          </Key>
+          <Property Name="empID" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDCard" Type="nvarchar" MaxLength="20" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="20" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+          <Property Name="CurrentAddress" Type="nvarchar" MaxLength="504" />
+          <Property Name="PreviousAddress" Type="nvarchar" MaxLength="504" />
+          <Property Name="Position" Type="nvarchar" MaxLength="200" />
+          <Property Name="isActivated" Type="bit" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SMS.dbo.v_GetClassList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_GetClassList">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Capacity" Type="smallint" />
+          <Property Name="Location" Type="nvarchar" MaxLength="500" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="nvarchar" MaxLength="20" />
+          <Property Name="code" Type="nvarchar" MaxLength="20" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SMS.dbo.v_GetPermissionByFormList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_GetPermissionByFormList">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="CanAdd" />
+            <PropertyRef Name="CanDelete" />
+            <PropertyRef Name="CanUpdate" />
+            <PropertyRef Name="CanView" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="FormName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FormType" Type="nvarchar" MaxLength="200" />
+          <Property Name="module" Type="nvarchar" MaxLength="200" />
+          <Property Name="PermissionID" Type="int" />
+          <Property Name="UserId" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CanAdd" Type="bit" Nullable="false" />
+          <Property Name="CanDelete" Type="bit" Nullable="false" />
+          <Property Name="CanUpdate" Type="bit" Nullable="false" />
+          <Property Name="CanView" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SMS.dbo.v_GetStudentList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_GetStudentList">
+          <Key>
+            <PropertyRef Name="stdID" />
+          </Key>
+          <Property Name="stdID" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="7" />
+          <Property Name="Class" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="20" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Current Address" Type="nvarchar" MaxLength="605" />
+          <Property Name="Previous Address" Type="nvarchar" MaxLength="504" />
+          <Property Name="Descriptions" Type="nvarchar(max)" />
+          <Property Name="Father_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Mother_name" Type="nvarchar" MaxLength="200" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SMS.dbo.v_GetUserList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_GetUserList">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="200" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+          <Property Name="pwd" Type="nvarchar(max)" />
+          <Property Name="Createdby" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="nvarchar" MaxLength="20" />
+          <Property Name="Emp_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActibe" Type="bit" />
+          <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SMS.dbo.v_UserProfile' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_UserProfile">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="200" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Createdby" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="createdByName" Type="nvarchar" MaxLength="200" />
+          <Property Name="modifiedby" Type="numeric" Precision="12" Scale="0" />
+          <Property Name="modifiedDate" Type="datetime" />
+          <Property Name="Photo" Type="varbinary(max)" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+          <Property Name="Position" Type="nvarchar" MaxLength="200" />
+          <Property Name="pwd" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FDPHOTO">
+          <End Role="tbPhoto" Type="Self.tbPhoto" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbEmployee" Type="Self.tbEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbPhoto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbEmployee">
+              <PropertyRef Name="photo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCommune_tbDistrict">
+          <End Role="tbDistrict" Type="Self.tbDistrict" Multiplicity="0..1" />
+          <End Role="tbCommune" Type="Self.tbCommune" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDistrict">
+              <PropertyRef Name="DisID" />
+            </Principal>
+            <Dependent Role="tbCommune">
+              <PropertyRef Name="DisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbDistrict_tbProvince">
+          <End Role="tbProvince" Type="Self.tbProvince" Multiplicity="0..1" />
+          <End Role="tbDistrict" Type="Self.tbDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProvince">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="tbDistrict">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProvince_tbCountry">
+          <End Role="tbCountry" Type="Self.tbCountry" Multiplicity="0..1" />
+          <End Role="tbProvince" Type="Self.tbProvince" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="tbProvince">
+              <PropertyRef Name="couID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbStudent_tbClass">
+          <End Role="tbClass" Type="Self.tbClass" Multiplicity="0..1" />
+          <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbClass">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="tbStudent">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbStudent_tbParent">
+          <End Role="tbParent" Type="Self.tbParent" Multiplicity="0..1" />
+          <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbParent">
+              <PropertyRef Name="ParID" />
+            </Principal>
+            <Dependent Role="tbStudent">
+              <PropertyRef Name="ParID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCatID">
+          <End Role="tbStudentCategory" Type="Self.tbStudentCategory" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbStudentCategory">
+              <PropertyRef Name="catID" />
+            </Principal>
+            <Dependent Role="tbStudent">
+              <PropertyRef Name="catID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEMP">
+          <End Role="tbEmployee" Type="Self.tbEmployee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbUser" Type="Self.tbUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmployee">
+              <PropertyRef Name="empID" />
+            </Principal>
+            <Dependent Role="tbUser">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPhoto">
+          <End Role="tbPhoto" Type="Self.tbPhoto" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbPhoto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbStudent">
+              <PropertyRef Name="Photo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKUSERTYPE">
+          <End Role="tbUserType" Type="Self.tbUserType" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbUser" Type="Self.tbUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUserType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbUser">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_GetAddressTableByVillage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vilID" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="CountryID" Type="nvarchar" MaxLength="3" />
+                <Property Name="CountryName" Type="nvarchar" MaxLength="100" />
+                <Property Name="CountryZip" Type="nvarchar" MaxLength="10" />
+                <Property Name="ProvinceID" Type="nvarchar" MaxLength="3" />
+                <Property Name="ProvinceName" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProvinceZip" Type="nvarchar" MaxLength="10" />
+                <Property Name="DistrictID" Type="nvarchar" MaxLength="3" />
+                <Property Name="DistrictName" Type="nvarchar" MaxLength="100" />
+                <Property Name="DistrictZip" Type="nvarchar" MaxLength="10" />
+                <Property Name="CommuneID" Type="nvarchar" MaxLength="3" />
+                <Property Name="CommuneName" Type="nvarchar" MaxLength="100" />
+                <Property Name="CommuneZip" Type="nvarchar" MaxLength="10" />
+                <Property Name="VillageID" Type="nvarchar" MaxLength="3" />
+                <Property Name="VillageName" Type="nvarchar" MaxLength="100" />
+                <Property Name="VillageZip" Type="nvarchar" MaxLength="10" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_getBranchID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+          <Parameter Name="date" Type="date" Mode="In" />
+          <Parameter Name="number" Type="int" Mode="In" />
+          <Parameter Name="digit" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="fn_getDigitID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="number" Type="int" Mode="In" />
+          <Parameter Name="digit" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="fn_getFormatDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="fn_GetPermissionListByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="numeric" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="MODULE" Type="varchar" MaxLength="200" />
+                <Property Name="FormType" Type="varchar" MaxLength="200" />
+                <Property Name="FormName" Type="varchar" MaxLength="200" />
+                <Property Name="canAdd" Type="bit" />
+                <Property Name="canDelete" Type="bit" />
+                <Property Name="canUpdate" Type="bit" />
+                <Property Name="canView" Type="bit" />
+                <Property Name="userid" Type="numeric" Precision="12" Scale="0" />
+                <Property Name="formid" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_userencryption" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
+          <Parameter Name="str" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="SRMModelStoreContainer">
+          <EntitySet Name="tbBranch" EntityType="Self.tbBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbClass" EntityType="Self.tbClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCommune" EntityType="Self.tbCommune" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCountry" EntityType="Self.tbCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbDistrict" EntityType="Self.tbDistrict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbEmployee" EntityType="Self.tbEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbForm" EntityType="Self.tbForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbGeneralParameter" EntityType="Self.tbGeneralParameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbParameterSetting" EntityType="Self.tbParameterSetting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbParent" EntityType="Self.tbParent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbPermission" EntityType="Self.tbPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbPermissionByForm" EntityType="Self.tbPermissionByForm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbPhoto" EntityType="Self.tbPhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProvince" EntityType="Self.tbProvince" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbStudent" EntityType="Self.tbStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbStudentCategory" EntityType="Self.tbStudentCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbTeamWork" EntityType="Self.tbTeamWork" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbUser" EntityType="Self.tbUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbUserType" EntityType="Self.tbUserType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbVillage" EntityType="Self.tbVillage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_EmplyeeList" EntityType="Self.v_EmplyeeList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_EmplyeeList].[empID] AS [empID], 
+    [v_EmplyeeList].[Name] AS [Name], 
+    [v_EmplyeeList].[IDCard] AS [IDCard], 
+    [v_EmplyeeList].[DOB] AS [DOB], 
+    [v_EmplyeeList].[ContactPhone] AS [ContactPhone], 
+    [v_EmplyeeList].[Gender] AS [Gender], 
+    [v_EmplyeeList].[CurrentAddress] AS [CurrentAddress], 
+    [v_EmplyeeList].[PreviousAddress] AS [PreviousAddress], 
+    [v_EmplyeeList].[Position] AS [Position], 
+    [v_EmplyeeList].[isActivated] AS [isActivated], 
+    [v_EmplyeeList].[isDeleted] AS [isDeleted]
+    FROM [dbo].[v_EmplyeeList] AS [v_EmplyeeList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_GetClassList" EntityType="Self.v_GetClassList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_GetClassList].[ClassID] AS [ClassID], 
+    [v_GetClassList].[Name] AS [Name], 
+    [v_GetClassList].[Capacity] AS [Capacity], 
+    [v_GetClassList].[Location] AS [Location], 
+    [v_GetClassList].[Status] AS [Status], 
+    [v_GetClassList].[CreatedDate] AS [CreatedDate], 
+    [v_GetClassList].[code] AS [code], 
+    [v_GetClassList].[isDeleted] AS [isDeleted]
+    FROM [dbo].[v_GetClassList] AS [v_GetClassList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_GetPermissionByFormList" EntityType="Self.v_GetPermissionByFormList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_GetPermissionByFormList].[id] AS [id], 
+    [v_GetPermissionByFormList].[FormName] AS [FormName], 
+    [v_GetPermissionByFormList].[FormType] AS [FormType], 
+    [v_GetPermissionByFormList].[module] AS [module], 
+    [v_GetPermissionByFormList].[PermissionID] AS [PermissionID], 
+    [v_GetPermissionByFormList].[UserId] AS [UserId], 
+    [v_GetPermissionByFormList].[CanAdd] AS [CanAdd], 
+    [v_GetPermissionByFormList].[CanDelete] AS [CanDelete], 
+    [v_GetPermissionByFormList].[CanUpdate] AS [CanUpdate], 
+    [v_GetPermissionByFormList].[CanView] AS [CanView]
+    FROM [dbo].[v_GetPermissionByFormList] AS [v_GetPermissionByFormList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_GetStudentList" EntityType="Self.v_GetStudentList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_GetStudentList].[stdID] AS [stdID], 
+    [v_GetStudentList].[Name] AS [Name], 
+    [v_GetStudentList].[Gender] AS [Gender], 
+    [v_GetStudentList].[Class] AS [Class], 
+    [v_GetStudentList].[DOB] AS [DOB], 
+    [v_GetStudentList].[ContactPhone] AS [ContactPhone], 
+    [v_GetStudentList].[Current Address] AS [Current Address], 
+    [v_GetStudentList].[Previous Address] AS [Previous Address], 
+    [v_GetStudentList].[Descriptions] AS [Descriptions], 
+    [v_GetStudentList].[Father_name] AS [Father_name], 
+    [v_GetStudentList].[Mother_name] AS [Mother_name], 
+    [v_GetStudentList].[isDeleted] AS [isDeleted]
+    FROM [dbo].[v_GetStudentList] AS [v_GetStudentList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_GetUserList" EntityType="Self.v_GetUserList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_GetUserList].[Userid] AS [Userid], 
+    [v_GetUserList].[UserType] AS [UserType], 
+    [v_GetUserList].[UserName] AS [UserName], 
+    [v_GetUserList].[pwd] AS [pwd], 
+    [v_GetUserList].[Createdby] AS [Createdby], 
+    [v_GetUserList].[CreatedDate] AS [CreatedDate], 
+    [v_GetUserList].[Emp_name] AS [Emp_name], 
+    [v_GetUserList].[isActibe] AS [isActibe], 
+    [v_GetUserList].[isDeleted] AS [isDeleted]
+    FROM [dbo].[v_GetUserList] AS [v_GetUserList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_UserProfile" EntityType="Self.v_UserProfile" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_UserProfile].[Userid] AS [Userid], 
+    [v_UserProfile].[UserType] AS [UserType], 
+    [v_UserProfile].[UserName] AS [UserName], 
+    [v_UserProfile].[Createdby] AS [Createdby], 
+    [v_UserProfile].[CreatedDate] AS [CreatedDate], 
+    [v_UserProfile].[createdByName] AS [createdByName], 
+    [v_UserProfile].[modifiedby] AS [modifiedby], 
+    [v_UserProfile].[modifiedDate] AS [modifiedDate], 
+    [v_UserProfile].[Photo] AS [Photo], 
+    [v_UserProfile].[ContactPhone] AS [ContactPhone], 
+    [v_UserProfile].[Gender] AS [Gender], 
+    [v_UserProfile].[Position] AS [Position], 
+    [v_UserProfile].[pwd] AS [pwd]
+    FROM [dbo].[v_UserProfile] AS [v_UserProfile]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FDPHOTO" Association="Self.FDPHOTO">
+            <End Role="tbPhoto" EntitySet="tbPhoto" />
+            <End Role="tbEmployee" EntitySet="tbEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCommune_tbDistrict" Association="Self.FK_tbCommune_tbDistrict">
+            <End Role="tbDistrict" EntitySet="tbDistrict" />
+            <End Role="tbCommune" EntitySet="tbCommune" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbDistrict_tbProvince" Association="Self.FK_tbDistrict_tbProvince">
+            <End Role="tbProvince" EntitySet="tbProvince" />
+            <End Role="tbDistrict" EntitySet="tbDistrict" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProvince_tbCountry" Association="Self.FK_tbProvince_tbCountry">
+            <End Role="tbCountry" EntitySet="tbCountry" />
+            <End Role="tbProvince" EntitySet="tbProvince" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbStudent_tbClass" Association="Self.FK_tbStudent_tbClass">
+            <End Role="tbClass" EntitySet="tbClass" />
+            <End Role="tbStudent" EntitySet="tbStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbStudent_tbParent" Association="Self.FK_tbStudent_tbParent">
+            <End Role="tbParent" EntitySet="tbParent" />
+            <End Role="tbStudent" EntitySet="tbStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FKCatID" Association="Self.FKCatID">
+            <End Role="tbStudentCategory" EntitySet="tbStudentCategory" />
+            <End Role="tbStudent" EntitySet="tbStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FKEMP" Association="Self.FKEMP">
+            <End Role="tbEmployee" EntitySet="tbEmployee" />
+            <End Role="tbUser" EntitySet="tbUser" />
+          </AssociationSet>
+          <AssociationSet Name="FKPhoto" Association="Self.FKPhoto">
+            <End Role="tbPhoto" EntitySet="tbPhoto" />
+            <End Role="tbStudent" EntitySet="tbStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FKUSERTYPE" Association="Self.FKUSERTYPE">
+            <End Role="tbUserType" EntitySet="tbUserType" />
+            <End Role="tbUser" EntitySet="tbUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SRMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="fn_GetAddressTableByVillage_Result">
+          <Property Name="CountryID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CountryZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProvinceZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CommuneID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CommuneName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CommuneZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="VillageID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="VillageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="VillageZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <EntityContainer Name="SRMEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="fn_GetAddressTableByVillage" IsComposable="true" ReturnType="Collection(SRMModel.fn_GetAddressTableByVillage_Result)">
+          <Parameter Name="vilID" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_GetPermissionListByUserId" IsComposable="true" ReturnType="Collection(SRMModel.fn_GetPermissionListByUserId_Result)">
+          <Parameter Name="uid" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="tbBranches" EntityType="SRMModel.tbBranch" />
+          <EntitySet Name="tbClasses" EntityType="SRMModel.tbClass" />
+          <EntitySet Name="tbCommunes" EntityType="SRMModel.tbCommune" />
+          <EntitySet Name="tbCountries" EntityType="SRMModel.tbCountry" />
+          <EntitySet Name="tbDistricts" EntityType="SRMModel.tbDistrict" />
+          <EntitySet Name="tbEmployees" EntityType="SRMModel.tbEmployee" />
+          <EntitySet Name="tbForms" EntityType="SRMModel.tbForm" />
+          <EntitySet Name="tbGeneralParameters" EntityType="SRMModel.tbGeneralParameter" />
+          <EntitySet Name="tbParameterSettings" EntityType="SRMModel.tbParameterSetting" />
+          <EntitySet Name="tbParents" EntityType="SRMModel.tbParent" />
+          <EntitySet Name="tbPermissions" EntityType="SRMModel.tbPermission" />
+          <EntitySet Name="tbPermissionByForms" EntityType="SRMModel.tbPermissionByForm" />
+          <EntitySet Name="tbPhotoes" EntityType="SRMModel.tbPhoto" />
+          <EntitySet Name="tbProvinces" EntityType="SRMModel.tbProvince" />
+          <EntitySet Name="tbStudents" EntityType="SRMModel.tbStudent" />
+          <EntitySet Name="tbStudentCategories" EntityType="SRMModel.tbStudentCategory" />
+          <EntitySet Name="tbTeamWorks" EntityType="SRMModel.tbTeamWork" />
+          <EntitySet Name="tbUsers" EntityType="SRMModel.tbUser" />
+          <EntitySet Name="tbUserTypes" EntityType="SRMModel.tbUserType" />
+          <EntitySet Name="tbVillages" EntityType="SRMModel.tbVillage" />
+          <EntitySet Name="v_EmplyeeList" EntityType="SRMModel.v_EmplyeeList" />
+          <EntitySet Name="v_GetClassList" EntityType="SRMModel.v_GetClassList" />
+          <EntitySet Name="v_GetPermissionByFormList" EntityType="SRMModel.v_GetPermissionByFormList" />
+          <EntitySet Name="v_GetStudentList" EntityType="SRMModel.v_GetStudentList" />
+          <EntitySet Name="v_GetUserList" EntityType="SRMModel.v_GetUserList" />
+          <EntitySet Name="v_UserProfile" EntityType="SRMModel.v_UserProfile" />
+          <AssociationSet Name="FK_tbStudent_tbClass" Association="SRMModel.FK_tbStudent_tbClass">
+            <End Role="tbClass" EntitySet="tbClasses" />
+            <End Role="tbStudent" EntitySet="tbStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCommune_tbDistrict" Association="SRMModel.FK_tbCommune_tbDistrict">
+            <End Role="tbDistrict" EntitySet="tbDistricts" />
+            <End Role="tbCommune" EntitySet="tbCommunes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProvince_tbCountry" Association="SRMModel.FK_tbProvince_tbCountry">
+            <End Role="tbCountry" EntitySet="tbCountries" />
+            <End Role="tbProvince" EntitySet="tbProvinces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbDistrict_tbProvince" Association="SRMModel.FK_tbDistrict_tbProvince">
+            <End Role="tbProvince" EntitySet="tbProvinces" />
+            <End Role="tbDistrict" EntitySet="tbDistricts" />
+          </AssociationSet>
+          <AssociationSet Name="FDPHOTO" Association="SRMModel.FDPHOTO">
+            <End Role="tbPhoto" EntitySet="tbPhotoes" />
+            <End Role="tbEmployee" EntitySet="tbEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FKEMP" Association="SRMModel.FKEMP">
+            <End Role="tbEmployee" EntitySet="tbEmployees" />
+            <End Role="tbUser" EntitySet="tbUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbStudent_tbParent" Association="SRMModel.FK_tbStudent_tbParent">
+            <End Role="tbParent" EntitySet="tbParents" />
+            <End Role="tbStudent" EntitySet="tbStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FKPhoto" Association="SRMModel.FKPhoto">
+            <End Role="tbPhoto" EntitySet="tbPhotoes" />
+            <End Role="tbStudent" EntitySet="tbStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FKCatID" Association="SRMModel.FKCatID">
+            <End Role="tbStudentCategory" EntitySet="tbStudentCategories" />
+            <End Role="tbStudent" EntitySet="tbStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FKUSERTYPE" Association="SRMModel.FKUSERTYPE">
+            <End Role="tbUserType" EntitySet="tbUserTypes" />
+            <End Role="tbUser" EntitySet="tbUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="fn_GetPermissionListByUserId_Result">
+          <Property Type="String" Name="MODULE" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FormType" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="FormName" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="canAdd" Nullable="true" />
+          <Property Type="Boolean" Name="canDelete" Nullable="true" />
+          <Property Type="Boolean" Name="canUpdate" Nullable="true" />
+          <Property Type="Boolean" Name="canView" Nullable="true" />
+          <Property Type="Decimal" Name="userid" Nullable="true" Precision="12" Scale="0" />
+          <Property Type="Int32" Name="formid" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tbBranch">
+          <Key>
+            <PropertyRef Name="BranchID" />
+          </Key>
+          <Property Name="BranchID" Type="Decimal" Nullable="false" Precision="20" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BuiltDate" Type="DateTime" Precision="0" />
+          <Property Name="Manager" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbClass">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Capacity" Type="Int16" />
+          <Property Name="Location" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbStudents" Relationship="SRMModel.FK_tbStudent_tbClass" FromRole="tbClass" ToRole="tbStudent" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbCommune">
+          <Key>
+            <PropertyRef Name="ComID" />
+          </Key>
+          <Property Name="ComID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DisID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbDistrict" Relationship="SRMModel.FK_tbCommune_tbDistrict" FromRole="tbCommune" ToRole="tbDistrict" />
+        </EntityType>
+        <EntityType Name="tbCountry">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbProvinces" Relationship="SRMModel.FK_tbProvince_tbCountry" FromRole="tbCountry" ToRole="tbProvince" />
+        </EntityType>
+        <EntityType Name="tbDistrict">
+          <Key>
+            <PropertyRef Name="DisID" />
+          </Key>
+          <Property Name="DisID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ProID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbCommunes" Relationship="SRMModel.FK_tbCommune_tbDistrict" FromRole="tbDistrict" ToRole="tbCommune" />
+          <NavigationProperty Name="tbProvince" Relationship="SRMModel.FK_tbDistrict_tbProvince" FromRole="tbDistrict" ToRole="tbProvince" />
+        </EntityType>
+        <EntityType Name="tbEmployee">
+          <Key>
+            <PropertyRef Name="empID" />
+          </Key>
+          <Property Name="empID" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDCard" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentAddress" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="PerAddress" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Position" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="Int32" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <Property Name="isActivated" Type="Boolean" />
+          <NavigationProperty Name="tbPhoto" Relationship="SRMModel.FDPHOTO" FromRole="tbEmployee" ToRole="tbPhoto" />
+          <NavigationProperty Name="tbUsers" Relationship="SRMModel.FKEMP" FromRole="tbEmployee" ToRole="tbUser" />
+        </EntityType>
+        <EntityType Name="tbForm">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FormType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="module" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbGeneralParameter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Parameter_type" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Parameter_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreateBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="modifiedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="modifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="isActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbParameterSetting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Table" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbParent">
+          <Key>
+            <PropertyRef Name="ParID" />
+          </Key>
+          <Property Name="ParID" Type="Decimal" Nullable="false" Precision="20" Scale="0" />
+          <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MotherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbStudents" Relationship="SRMModel.FK_tbStudent_tbParent" FromRole="tbParent" ToRole="tbStudent" />
+        </EntityType>
+        <EntityType Name="tbPermission">
+          <Key>
+            <PropertyRef Name="pID" />
+          </Key>
+          <Property Name="pID" Type="Decimal" Nullable="false" Precision="4" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermissionType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="canAdd" Type="Boolean" />
+          <Property Name="canUpdate" Type="Boolean" />
+          <Property Name="canDelete" Type="Boolean" />
+          <Property Name="canView" Type="Boolean" />
+          <Property Name="createdby" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="modifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="modifiedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbPermissionByForm">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="canDelete" Type="Boolean" />
+          <Property Name="canAdd" Type="Boolean" />
+          <Property Name="canUpdate" Type="Boolean" />
+          <Property Name="canView" Type="Boolean" />
+          <Property Name="FormID" Type="Int32" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbPhoto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreateBy_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isdefault" Type="Boolean" />
+          <NavigationProperty Name="tbEmployees" Relationship="SRMModel.FDPHOTO" FromRole="tbPhoto" ToRole="tbEmployee" />
+          <NavigationProperty Name="tbStudents" Relationship="SRMModel.FKPhoto" FromRole="tbPhoto" ToRole="tbStudent" />
+        </EntityType>
+        <EntityType Name="tbProvince">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="couID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbCountry" Relationship="SRMModel.FK_tbProvince_tbCountry" FromRole="tbProvince" ToRole="tbCountry" />
+          <NavigationProperty Name="tbDistricts" Relationship="SRMModel.FK_tbDistrict_tbProvince" FromRole="tbProvince" ToRole="tbDistrict" />
+        </EntityType>
+        <EntityType Name="tbStudent">
+          <Key>
+            <PropertyRef Name="stdID" />
+          </Key>
+          <Property Name="stdID" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="ClassID" Type="Int32" />
+          <Property Name="ParID" Type="Decimal" Precision="20" Scale="0" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="CurrenctAddress" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="PreAddress" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="catID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="Photo" Type="Int32" />
+          <Property Name="HouseNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Father_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Mother_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <NavigationProperty Name="tbClass" Relationship="SRMModel.FK_tbStudent_tbClass" FromRole="tbStudent" ToRole="tbClass" />
+          <NavigationProperty Name="tbParent" Relationship="SRMModel.FK_tbStudent_tbParent" FromRole="tbStudent" ToRole="tbParent" />
+          <NavigationProperty Name="tbPhoto" Relationship="SRMModel.FKPhoto" FromRole="tbStudent" ToRole="tbPhoto" />
+          <NavigationProperty Name="tbStudentCategory" Relationship="SRMModel.FKCatID" FromRole="tbStudent" ToRole="tbStudentCategory" />
+        </EntityType>
+        <EntityType Name="tbStudentCategory">
+          <Key>
+            <PropertyRef Name="catID" />
+          </Key>
+          <Property Name="catID" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedBy_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbStudents" Relationship="SRMModel.FKCatID" FromRole="tbStudentCategory" ToRole="tbStudent" />
+        </EntityType>
+        <EntityType Name="tbTeamWork">
+          <Key>
+            <PropertyRef Name="TeamWorkID" />
+          </Key>
+          <Property Name="TeamWorkID" Type="Decimal" Nullable="false" Precision="20" Scale="0" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedByID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Deadline" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbUser">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="UserType" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="modifiedby" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="modifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="createdByName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="empId" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="isActibe" Type="Boolean" />
+          <Property Name="isDeleted" Type="Boolean" />
+          <NavigationProperty Name="tbEmployee" Relationship="SRMModel.FKEMP" FromRole="tbUser" ToRole="tbEmployee" />
+          <NavigationProperty Name="tbUserType" Relationship="SRMModel.FKUSERTYPE" FromRole="tbUser" ToRole="tbUserType" />
+          <Property Name="keeplogin" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbUserType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="modifiedby" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="modifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="createdByName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tbUsers" Relationship="SRMModel.FKUSERTYPE" FromRole="tbUserType" ToRole="tbUser" />
+        </EntityType>
+        <EntityType Name="tbVillage">
+          <Key>
+            <PropertyRef Name="ViID" />
+          </Key>
+          <Property Name="ViID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CommuneID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="v_EmplyeeList">
+          <Key>
+            <PropertyRef Name="empID" />
+          </Key>
+          <Property Name="empID" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDCard" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentAddress" Type="String" MaxLength="504" FixedLength="false" Unicode="true" />
+          <Property Name="PreviousAddress" Type="String" MaxLength="504" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="isActivated" Type="Boolean" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="v_GetClassList">
+          <Key>
+            <PropertyRef Name="ClassID" />
+          </Key>
+          <Property Name="ClassID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Capacity" Type="Int16" />
+          <Property Name="Location" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="v_GetPermissionByFormList">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="CanAdd" />
+            <PropertyRef Name="CanDelete" />
+            <PropertyRef Name="CanUpdate" />
+            <PropertyRef Name="CanView" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="FormName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FormType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="module" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PermissionID" Type="Int32" />
+          <Property Name="UserId" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CanAdd" Type="Boolean" Nullable="false" />
+          <Property Name="CanDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CanUpdate" Type="Boolean" Nullable="false" />
+          <Property Name="CanView" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_GetStudentList">
+          <Key>
+            <PropertyRef Name="stdID" />
+          </Key>
+          <Property Name="stdID" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Current_Address" Type="String" MaxLength="605" FixedLength="false" Unicode="true" />
+          <Property Name="Previous_Address" Type="String" MaxLength="504" FixedLength="false" Unicode="true" />
+          <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Father_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Mother_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="v_GetUserList">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="UserType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Emp_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActibe" Type="Boolean" />
+          <Property Name="isDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="v_UserProfile">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="UserType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Createdby" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="createdByName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="modifiedby" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="modifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tbStudent_tbClass">
+          <End Type="SRMModel.tbClass" Role="tbClass" Multiplicity="0..1" />
+          <End Type="SRMModel.tbStudent" Role="tbStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbClass">
+              <PropertyRef Name="ClassID" />
+            </Principal>
+            <Dependent Role="tbStudent">
+              <PropertyRef Name="ClassID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCommune_tbDistrict">
+          <End Type="SRMModel.tbDistrict" Role="tbDistrict" Multiplicity="0..1" />
+          <End Type="SRMModel.tbCommune" Role="tbCommune" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDistrict">
+              <PropertyRef Name="DisID" />
+            </Principal>
+            <Dependent Role="tbCommune">
+              <PropertyRef Name="DisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProvince_tbCountry">
+          <End Type="SRMModel.tbCountry" Role="tbCountry" Multiplicity="0..1" />
+          <End Type="SRMModel.tbProvince" Role="tbProvince" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCountry">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="tbProvince">
+              <PropertyRef Name="couID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbDistrict_tbProvince">
+          <End Type="SRMModel.tbProvince" Role="tbProvince" Multiplicity="0..1" />
+          <End Type="SRMModel.tbDistrict" Role="tbDistrict" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProvince">
+              <PropertyRef Name="ProID" />
+            </Principal>
+            <Dependent Role="tbDistrict">
+              <PropertyRef Name="ProID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FDPHOTO">
+          <End Type="SRMModel.tbPhoto" Role="tbPhoto" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SRMModel.tbEmployee" Role="tbEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbPhoto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbEmployee">
+              <PropertyRef Name="photo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKEMP">
+          <End Type="SRMModel.tbEmployee" Role="tbEmployee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SRMModel.tbUser" Role="tbUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbEmployee">
+              <PropertyRef Name="empID" />
+            </Principal>
+            <Dependent Role="tbUser">
+              <PropertyRef Name="empId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbStudent_tbParent">
+          <End Type="SRMModel.tbParent" Role="tbParent" Multiplicity="0..1" />
+          <End Type="SRMModel.tbStudent" Role="tbStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbParent">
+              <PropertyRef Name="ParID" />
+            </Principal>
+            <Dependent Role="tbStudent">
+              <PropertyRef Name="ParID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPhoto">
+          <End Type="SRMModel.tbPhoto" Role="tbPhoto" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SRMModel.tbStudent" Role="tbStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbPhoto">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbStudent">
+              <PropertyRef Name="Photo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKCatID">
+          <End Type="SRMModel.tbStudentCategory" Role="tbStudentCategory" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SRMModel.tbStudent" Role="tbStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbStudentCategory">
+              <PropertyRef Name="catID" />
+            </Principal>
+            <Dependent Role="tbStudent">
+              <PropertyRef Name="catID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKUSERTYPE">
+          <End Type="SRMModel.tbUserType" Role="tbUserType" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SRMModel.tbUser" Role="tbUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbUserType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbUser">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SRMModelStoreContainer" CdmEntityContainer="SRMEntities">
+          <FunctionImportMapping FunctionName="SRMModel.Store.fn_GetAddressTableByVillage" FunctionImportName="fn_GetAddressTableByVillage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SRMModel.fn_GetAddressTableByVillage_Result">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryZip" ColumnName="CountryZip" />
+                <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+                <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+                <ScalarProperty Name="ProvinceZip" ColumnName="ProvinceZip" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="DistrictZip" ColumnName="DistrictZip" />
+                <ScalarProperty Name="CommuneID" ColumnName="CommuneID" />
+                <ScalarProperty Name="CommuneName" ColumnName="CommuneName" />
+                <ScalarProperty Name="CommuneZip" ColumnName="CommuneZip" />
+                <ScalarProperty Name="VillageID" ColumnName="VillageID" />
+                <ScalarProperty Name="VillageName" ColumnName="VillageName" />
+                <ScalarProperty Name="VillageZip" ColumnName="VillageZip" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_GetPermissionListByUserId" FunctionName="SRMModel.Store.fn_GetPermissionListByUserId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SRMModel.fn_GetPermissionListByUserId_Result">
+                <ScalarProperty Name="MODULE" ColumnName="MODULE" />
+                <ScalarProperty Name="FormType" ColumnName="FormType" />
+                <ScalarProperty Name="FormName" ColumnName="FormName" />
+                <ScalarProperty Name="canAdd" ColumnName="canAdd" />
+                <ScalarProperty Name="canDelete" ColumnName="canDelete" />
+                <ScalarProperty Name="canUpdate" ColumnName="canUpdate" />
+                <ScalarProperty Name="canView" ColumnName="canView" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tbBranches">
+            <EntityTypeMapping TypeName="SRMModel.tbBranch">
+              <MappingFragment StoreEntitySet="tbBranch">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="BuiltDate" ColumnName="BuiltDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbClasses">
+            <EntityTypeMapping TypeName="SRMModel.tbClass">
+              <MappingFragment StoreEntitySet="tbClass">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCommunes">
+            <EntityTypeMapping TypeName="SRMModel.tbCommune">
+              <MappingFragment StoreEntitySet="tbCommune">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DisID" ColumnName="DisID" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ComID" ColumnName="ComID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCountries">
+            <EntityTypeMapping TypeName="SRMModel.tbCountry">
+              <MappingFragment StoreEntitySet="tbCountry">
+                <ScalarProperty Name="CreatedBy_Name" ColumnName="CreatedBy_Name" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbDistricts">
+            <EntityTypeMapping TypeName="SRMModel.tbDistrict">
+              <MappingFragment StoreEntitySet="tbDistrict">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DisID" ColumnName="DisID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbEmployees">
+            <EntityTypeMapping TypeName="SRMModel.tbEmployee">
+              <MappingFragment StoreEntitySet="tbEmployee">
+                <ScalarProperty Name="isActivated" ColumnName="isActivated" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="PerAddress" ColumnName="PerAddress" />
+                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="empID" ColumnName="empID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbForms">
+            <EntityTypeMapping TypeName="SRMModel.tbForm">
+              <MappingFragment StoreEntitySet="tbForm">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy_name" ColumnName="CreatedBy_name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="module" ColumnName="module" />
+                <ScalarProperty Name="FormType" ColumnName="FormType" />
+                <ScalarProperty Name="FormName" ColumnName="FormName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbGeneralParameters">
+            <EntityTypeMapping TypeName="SRMModel.tbGeneralParameter">
+              <MappingFragment StoreEntitySet="tbGeneralParameter">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="CreatedBy_name" ColumnName="CreatedBy_name" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Parameter_name" ColumnName="Parameter_name" />
+                <ScalarProperty Name="Parameter_type" ColumnName="Parameter_type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbParameterSettings">
+            <EntityTypeMapping TypeName="SRMModel.tbParameterSetting">
+              <MappingFragment StoreEntitySet="tbParameterSetting">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Table" ColumnName="Table" />
+                <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CREATEBy" ColumnName="CREATEBy" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbParents">
+            <EntityTypeMapping TypeName="SRMModel.tbParent">
+              <MappingFragment StoreEntitySet="tbParent">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="ParID" ColumnName="ParID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbPermissions">
+            <EntityTypeMapping TypeName="SRMModel.tbPermission">
+              <MappingFragment StoreEntitySet="tbPermission">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="canView" ColumnName="canView" />
+                <ScalarProperty Name="canDelete" ColumnName="canDelete" />
+                <ScalarProperty Name="canUpdate" ColumnName="canUpdate" />
+                <ScalarProperty Name="canAdd" ColumnName="canAdd" />
+                <ScalarProperty Name="PermissionType" ColumnName="PermissionType" />
+                <ScalarProperty Name="pID" ColumnName="pID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbPermissionByForms">
+            <EntityTypeMapping TypeName="SRMModel.tbPermissionByForm">
+              <MappingFragment StoreEntitySet="tbPermissionByForm">
+                <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy_name" ColumnName="CreatedBy_name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="canView" ColumnName="canView" />
+                <ScalarProperty Name="canUpdate" ColumnName="canUpdate" />
+                <ScalarProperty Name="canAdd" ColumnName="canAdd" />
+                <ScalarProperty Name="canDelete" ColumnName="canDelete" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbPhotoes">
+            <EntityTypeMapping TypeName="SRMModel.tbPhoto">
+              <MappingFragment StoreEntitySet="tbPhoto">
+                <ScalarProperty Name="isdefault" ColumnName="isdefault" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreateBy_name" ColumnName="CreateBy_name" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProvinces">
+            <EntityTypeMapping TypeName="SRMModel.tbProvince">
+              <MappingFragment StoreEntitySet="tbProvince">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="couID" ColumnName="couID" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbStudents">
+            <EntityTypeMapping TypeName="SRMModel.tbStudent">
+              <MappingFragment StoreEntitySet="tbStudent">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="Mother_name" ColumnName="Mother_name" />
+                <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+                <ScalarProperty Name="HouseNo" ColumnName="HouseNo" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy_name" ColumnName="CreatedBy_name" />
+                <ScalarProperty Name="catID" ColumnName="catID" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="PreAddress" ColumnName="PreAddress" />
+                <ScalarProperty Name="CurrenctAddress" ColumnName="CurrenctAddress" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ParID" ColumnName="ParID" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="stdID" ColumnName="stdID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbStudentCategories">
+            <EntityTypeMapping TypeName="SRMModel.tbStudentCategory">
+              <MappingFragment StoreEntitySet="tbStudentCategory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy_name" ColumnName="CreatedBy_name" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="catID" ColumnName="catID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTeamWorks">
+            <EntityTypeMapping TypeName="SRMModel.tbTeamWork">
+              <MappingFragment StoreEntitySet="tbTeamWork">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+                <ScalarProperty Name="AssignedByID" ColumnName="AssignedByID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="TeamWorkID" ColumnName="TeamWorkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbUsers">
+            <EntityTypeMapping TypeName="SRMModel.tbUser">
+              <MappingFragment StoreEntitySet="tbUser">
+                <ScalarProperty Name="keeplogin" ColumnName="keeplogin" />
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActibe" ColumnName="isActibe" />
+                <ScalarProperty Name="empId" ColumnName="empId" />
+                <ScalarProperty Name="createdByName" ColumnName="createdByName" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbUserTypes">
+            <EntityTypeMapping TypeName="SRMModel.tbUserType">
+              <MappingFragment StoreEntitySet="tbUserType">
+                <ScalarProperty Name="createdByName" ColumnName="createdByName" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbVillages">
+            <EntityTypeMapping TypeName="SRMModel.tbVillage">
+              <MappingFragment StoreEntitySet="tbVillage">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CommuneID" ColumnName="CommuneID" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ViID" ColumnName="ViID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_EmplyeeList">
+            <EntityTypeMapping TypeName="SRMModel.v_EmplyeeList">
+              <MappingFragment StoreEntitySet="v_EmplyeeList">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActivated" ColumnName="isActivated" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="PreviousAddress" ColumnName="PreviousAddress" />
+                <ScalarProperty Name="CurrentAddress" ColumnName="CurrentAddress" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="empID" ColumnName="empID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_GetClassList">
+            <EntityTypeMapping TypeName="SRMModel.v_GetClassList">
+              <MappingFragment StoreEntitySet="v_GetClassList">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClassID" ColumnName="ClassID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_GetPermissionByFormList">
+            <EntityTypeMapping TypeName="SRMModel.v_GetPermissionByFormList">
+              <MappingFragment StoreEntitySet="v_GetPermissionByFormList">
+                <ScalarProperty Name="CanView" ColumnName="CanView" />
+                <ScalarProperty Name="CanUpdate" ColumnName="CanUpdate" />
+                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+                <ScalarProperty Name="CanAdd" ColumnName="CanAdd" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+                <ScalarProperty Name="module" ColumnName="module" />
+                <ScalarProperty Name="FormType" ColumnName="FormType" />
+                <ScalarProperty Name="FormName" ColumnName="FormName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_GetStudentList">
+            <EntityTypeMapping TypeName="SRMModel.v_GetStudentList">
+              <MappingFragment StoreEntitySet="v_GetStudentList">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="Mother_name" ColumnName="Mother_name" />
+                <ScalarProperty Name="Father_name" ColumnName="Father_name" />
+                <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+                <ScalarProperty Name="Previous_Address" ColumnName="Previous Address" />
+                <ScalarProperty Name="Current_Address" ColumnName="Current Address" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="stdID" ColumnName="stdID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_GetUserList">
+            <EntityTypeMapping TypeName="SRMModel.v_GetUserList">
+              <MappingFragment StoreEntitySet="v_GetUserList">
+                <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+                <ScalarProperty Name="isActibe" ColumnName="isActibe" />
+                <ScalarProperty Name="Emp_name" ColumnName="Emp_name" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_UserProfile">
+            <EntityTypeMapping TypeName="SRMModel.v_UserProfile">
+              <MappingFragment StoreEntitySet="v_UserProfile">
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+                <ScalarProperty Name="createdByName" ColumnName="createdByName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

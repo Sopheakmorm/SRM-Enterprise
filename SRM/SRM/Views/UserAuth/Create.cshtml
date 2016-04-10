@@ -1,0 +1,122 @@
+﻿@model SRM.Models.tbUser
+@{
+    ViewBag.Title = "Create";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="well">
+            <fieldset>
+                <legend>Create Class Information</legend>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.Userid,"User ID")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.TextBoxFor(m=>m.Userid,htmlAttributes:new {@class="k-textbox",@Value = ViewData["id"], @disabled = "disabled" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Userid)
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.UserName,"User Name")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBoxFor(m => m.UserName)
+                                </div>
+                                @Html.ValidationMessageFor(m => m.UserName)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.UserType,"User Type")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().DropDownListFor(m => m.UserType).BindTo(ViewData["usertype"] as SelectList).OptionLabel("-- Select Type --").DataTextField("Text").DataValueField("Value")
+                                </div>
+                                @Html.ValidationMessageFor(m => m.UserType)
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.empId,"Employee")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().DropDownListFor(m => m.empId).BindTo(ViewData["empList"] as SelectList).OptionLabel("-- Select Employee --").DataValueField("Value").DataTextField("Text")
+                                </div>
+                                @Html.ValidationMessageFor(m => m.empId)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.pwd,"Password")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBoxFor(m => m.pwd).HtmlAttributes(new { type = "password",@id = "confirm" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.pwd)
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.LabelFor(m => m.pwd,"Password")
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    @Html.Kendo().TextBox().Name("confirm").HtmlAttributes(new { type = "password" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.pwd)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="col-md-3 col-sm-3 pull-right">
+                                <input type="submit" value="Save" class="btn btn-success pull-right" />
+                                <a class="btn btn-danger pull-right" href="@Url.Action("Index")">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function validatePwd() {
+        alert('test');
+        var p1 = getElementById('pwd').value;
+        var p2 = getElementById('confirm').value;
+        if (p1 === p2) return true;
+        alert('Password mismatched!');
+        return false;
+    }
+    $(function () {
+        $("form").submit(function () {
+            var p1 = getElementById('pwd').value;
+            var p2 = getElementById('confirm').value;
+            if (p1 === p2) return true;
+            alert('Password mismatched!');
+            return false;
+        });
+    });
+</script>
+
+

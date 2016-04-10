@@ -1,0 +1,34 @@
+﻿@using SRM.Utils
+@{
+    //if (Session[SessionIndex.userID.ToString()] != null)
+    //{
+
+    //if(Session["first"]!=null)
+    //{
+    //    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+    //    Session["first"] = null;
+    //}
+    //Layout = Request.IsAjaxRequest() ? null : "~/Views/Shared/_AdminLteLayout.cshtml";
+    if (!Request.IsAjaxRequest())
+    {
+        Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+    }
+    //}
+    //else
+    //{
+    //var u = Singleton.GetDatabase().tbUsers.First();
+    //// case for debug code
+    //if(u != null)
+    //{
+    //    Session[SessionIndex.userID.ToString()] = u.Userid;
+    //    Session[SessionIndex.UserName.ToString()] = u.UserName;
+    //    Session[SessionIndex.Position.ToString()] = "Developer";
+    //    Session[SessionIndex.RegisteredDate.ToString()] = DateTime.Now;
+    //    Session[SessionIndex.isOnlined.ToString()] = true;
+    //    Session[SessionIndex.pwd.ToString()] = u.pwd;
+    //    Session[SessionIndex.userImagePath.ToString()] = Server.MapPath("~") + "Content\\ico\\pro.jpg";
+
+    //    Layout = "~/Views/Shared/_AdminLteLayout.cshtml";
+    //}
+    //  }
+}

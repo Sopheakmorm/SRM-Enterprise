@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbBranch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Code" Type="nvarchar" MaxLength="3" />
+    <Property Name="Address" Type="nvarchar" MaxLength="5" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="BuiltDate" Type="date" />
+    <Property Name="Manager" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbClass">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Capacity" Type="smallint" />
+    <Property Name="Location" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbCommune">
+    <Key>
+      <PropertyRef Name="ComID" />
+    </Key>
+    <Property Name="ComID" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+    <Property Name="DisID" Type="nvarchar" MaxLength="5" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbCountry">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="CreatedBy_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbDistrict">
+    <Key>
+      <PropertyRef Name="DisID" />
+    </Key>
+    <Property Name="DisID" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+    <Property Name="ProID" Type="nvarchar" MaxLength="3" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbEmployee">
+    <Key>
+      <PropertyRef Name="empID" />
+    </Key>
+    <Property Name="empID" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDCard" Type="nvarchar" MaxLength="20" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="1" />
+    <Property Name="CurrentAddress" Type="nvarchar" MaxLength="5" />
+    <Property Name="PerAddress" Type="nvarchar" MaxLength="5" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbParameterSetting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="20" />
+    <Property Name="Descriptions" Type="nvarchar(max)" />
+    <Property Name="CREATEBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Table" Type="varchar" MaxLength="100" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbParent">
+    <Key>
+      <PropertyRef Name="ParID" />
+    </Key>
+    <Property Name="ParID" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="FatherName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MotherName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbPermission">
+    <Key>
+      <PropertyRef Name="pID" />
+    </Key>
+    <Property Name="pID" Type="numeric" Precision="4" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermissionType" Type="nvarchar" MaxLength="200" />
+    <Property Name="canAdd" Type="bit" />
+    <Property Name="canUpdate" Type="bit" />
+    <Property Name="canDelete" Type="bit" />
+    <Property Name="canView" Type="bit" />
+    <Property Name="createdby" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="createdDate" Type="datetime" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="modifiedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="note" Type="nvarchar(max)" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tbPhoto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Photo" Type="varbinary(max)" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreateBy_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="Note" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="tbProvince">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+    <Property Name="couID" Type="nvarchar" MaxLength="3" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbStudent">
+    <Key>
+      <PropertyRef Name="stdID" />
+    </Key>
+    <Property Name="stdID" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="7" />
+    <Property Name="ClassID" Type="numeric" Precision="20" Scale="0" />
+    <Property Name="ParID" Type="numeric" Precision="20" Scale="0" />
+    <Property Name="Address" Type="nvarchar" MaxLength="5" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+    <Property Name="CurrenctAddress" Type="nvarchar" MaxLength="5" />
+    <Property Name="PreAddress" Type="nvarchar" MaxLength="5" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="catID" Type="nvarchar" MaxLength="3" />
+    <Property Name="CreatedBy_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="Photo" Type="int" />
+    <Property Name="HouseNo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Father_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mother_name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tbStudentCategory">
+    <Key>
+      <PropertyRef Name="catID" />
+    </Key>
+    <Property Name="catID" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="Descriptions" Type="nvarchar(max)" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedBy_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbTeamWork">
+    <Key>
+      <PropertyRef Name="TeamWorkID" />
+    </Key>
+    <Property Name="TeamWorkID" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="AssignedByID" Type="nvarchar" MaxLength="20" />
+    <Property Name="Deadline" Type="datetime" />
+    <Property Name="Title" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'SMS.dbo.tbTest1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tbTest1">
+          <Property Name="id" Type="int" />
+        </EntityType>-->
+  <EntityType Name="tbVillage">
+    <Key>
+      <PropertyRef Name="ViID" />
+    </Key>
+    <Property Name="ViID" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Zip" Type="nvarchar" MaxLength="10" />
+    <Property Name="CommuneID" Type="nvarchar" MaxLength="5" />
+    <Property Name="CreatedBy" Type="numeric" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SMS.dbo.v_GetStudentList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="v_GetStudentList">
+    <Key>
+      <PropertyRef Name="stdID" />
+    </Key>
+    <Property Name="stdID" Type="numeric" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="7" />
+    <Property Name="Class" Type="nvarchar" MaxLength="50" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="ContactPhone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Current Address" Type="nvarchar" MaxLength="605" />
+    <Property Name="Previous Address" Type="nvarchar" MaxLength="504" />
+    <Property Name="Descriptions" Type="nvarchar(max)" />
+    <Property Name="Father_name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Mother_name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK_tbCommune_tbDistrict">
+    <End Role="tbDistrict" Type="Self.tbDistrict" Multiplicity="0..1" />
+    <End Role="tbCommune" Type="Self.tbCommune" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDistrict">
+        <PropertyRef Name="DisID" />
+      </Principal>
+      <Dependent Role="tbCommune">
+        <PropertyRef Name="DisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbDistrict_tbProvince">
+    <End Role="tbProvince" Type="Self.tbProvince" Multiplicity="0..1" />
+    <End Role="tbDistrict" Type="Self.tbDistrict" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProvince">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="tbDistrict">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbProvince_tbCountry">
+    <End Role="tbCountry" Type="Self.tbCountry" Multiplicity="0..1" />
+    <End Role="tbProvince" Type="Self.tbProvince" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCountry">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="tbProvince">
+        <PropertyRef Name="couID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbStudent_tbClass">
+    <End Role="tbClass" Type="Self.tbClass" Multiplicity="0..1" />
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbClass">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbStudent_tbParent">
+    <End Role="tbParent" Type="Self.tbParent" Multiplicity="0..1" />
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbParent">
+        <PropertyRef Name="ParID" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="ParID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbStudent_tbVillage">
+    <End Role="tbVillage" Type="Self.tbVillage" Multiplicity="0..1" />
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbVillage">
+        <PropertyRef Name="ViID" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="Address" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKCatID">
+    <End Role="tbStudentCategory" Type="Self.tbStudentCategory" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbStudentCategory">
+        <PropertyRef Name="catID" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="catID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPhoto">
+    <End Role="tbPhoto" Type="Self.tbPhoto" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbPhoto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="Photo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_GetAddressTableByVillage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vilID" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="CountryID" Type="nvarchar" MaxLength="3" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CountryZip" Type="nvarchar" MaxLength="10" />
+          <Property Name="ProvinceID" Type="nvarchar" MaxLength="3" />
+          <Property Name="ProvinceName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProvinceZip" Type="nvarchar" MaxLength="10" />
+          <Property Name="DistrictID" Type="nvarchar" MaxLength="3" />
+          <Property Name="DistrictName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DistrictZip" Type="nvarchar" MaxLength="10" />
+          <Property Name="CommuneID" Type="nvarchar" MaxLength="3" />
+          <Property Name="CommuneName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CommuneZip" Type="nvarchar" MaxLength="10" />
+          <Property Name="VillageID" Type="nvarchar" MaxLength="3" />
+          <Property Name="VillageName" Type="nvarchar" MaxLength="100" />
+          <Property Name="VillageZip" Type="nvarchar" MaxLength="10" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_getBranchID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="date" Type="date" Mode="In" />
+    <Parameter Name="number" Type="int" Mode="In" />
+    <Parameter Name="digit" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="fn_getDigitID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="number" Type="int" Mode="In" />
+    <Parameter Name="digit" Type="tinyint" Mode="In" />
+  </Function>
+  <Function Name="fn_getFormatDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+  <EntityContainer Name="SMSModelStoreContainer">
+    <EntitySet Name="tbBranch" EntityType="Self.tbBranch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbClass" EntityType="Self.tbClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbCommune" EntityType="Self.tbCommune" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbCountry" EntityType="Self.tbCountry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbDistrict" EntityType="Self.tbDistrict" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbEmployee" EntityType="Self.tbEmployee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbParameterSetting" EntityType="Self.tbParameterSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbParent" EntityType="Self.tbParent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbPermission" EntityType="Self.tbPermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbPhoto" EntityType="Self.tbPhoto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbProvince" EntityType="Self.tbProvince" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbStudent" EntityType="Self.tbStudent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbStudentCategory" EntityType="Self.tbStudentCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbTeamWork" EntityType="Self.tbTeamWork" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbVillage" EntityType="Self.tbVillage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="v_GetStudentList" EntityType="Self.v_GetStudentList" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [v_GetStudentList].[stdID] AS [stdID], 
+    [v_GetStudentList].[Name] AS [Name], 
+    [v_GetStudentList].[Gender] AS [Gender], 
+    [v_GetStudentList].[Class] AS [Class], 
+    [v_GetStudentList].[DOB] AS [DOB], 
+    [v_GetStudentList].[ContactPhone] AS [ContactPhone], 
+    [v_GetStudentList].[Current Address] AS [Current Address], 
+    [v_GetStudentList].[Previous Address] AS [Previous Address], 
+    [v_GetStudentList].[Descriptions] AS [Descriptions], 
+    [v_GetStudentList].[Father_name] AS [Father_name], 
+    [v_GetStudentList].[Mother_name] AS [Mother_name]
+    FROM [dbo].[v_GetStudentList] AS [v_GetStudentList]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tbCommune_tbDistrict" Association="Self.FK_tbCommune_tbDistrict">
+      <End Role="tbDistrict" EntitySet="tbDistrict" />
+      <End Role="tbCommune" EntitySet="tbCommune" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbDistrict_tbProvince" Association="Self.FK_tbDistrict_tbProvince">
+      <End Role="tbProvince" EntitySet="tbProvince" />
+      <End Role="tbDistrict" EntitySet="tbDistrict" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbProvince_tbCountry" Association="Self.FK_tbProvince_tbCountry">
+      <End Role="tbCountry" EntitySet="tbCountry" />
+      <End Role="tbProvince" EntitySet="tbProvince" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbStudent_tbClass" Association="Self.FK_tbStudent_tbClass">
+      <End Role="tbClass" EntitySet="tbClass" />
+      <End Role="tbStudent" EntitySet="tbStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbStudent_tbParent" Association="Self.FK_tbStudent_tbParent">
+      <End Role="tbParent" EntitySet="tbParent" />
+      <End Role="tbStudent" EntitySet="tbStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbStudent_tbVillage" Association="Self.FK_tbStudent_tbVillage">
+      <End Role="tbVillage" EntitySet="tbVillage" />
+      <End Role="tbStudent" EntitySet="tbStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FKCatID" Association="Self.FKCatID">
+      <End Role="tbStudentCategory" EntitySet="tbStudentCategory" />
+      <End Role="tbStudent" EntitySet="tbStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FKPhoto" Association="Self.FKPhoto">
+      <End Role="tbPhoto" EntitySet="tbPhoto" />
+      <End Role="tbStudent" EntitySet="tbStudent" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

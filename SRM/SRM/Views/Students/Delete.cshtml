@@ -1,0 +1,167 @@
+﻿@model SRM.Models.tbStudent
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbStudent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrenctAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrenctAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HouseNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HouseNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Father_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Father_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mother_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mother_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbClass.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbClass.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbParent.FatherName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbParent.FatherName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbPhoto.CreateBy_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbPhoto.CreateBy_name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tbStudentCategory.Descriptions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbStudentCategory.Descriptions)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

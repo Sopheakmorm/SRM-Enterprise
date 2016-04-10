@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="fn_GetAddressTableByVillage_Result">
+    <Property Name="CountryID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CountryZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinceID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinceZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DistrictID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="DistrictName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DistrictZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CommuneID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CommuneName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CommuneZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="VillageID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="VillageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="VillageZip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+  </ComplexType>
+  <EntityType Name="tbBranch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BuiltDate" Type="DateTime" Precision="0" />
+    <Property Name="Manager" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbClass">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Capacity" Type="Int16" />
+    <Property Name="Location" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbStudents" Relationship="Self.FK_tbStudent_tbClass" FromRole="tbClass" ToRole="tbStudent" />
+  </EntityType>
+  <EntityType Name="tbCommune">
+    <Key>
+      <PropertyRef Name="ComID" />
+    </Key>
+    <Property Name="ComID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DisID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbDistrict" Relationship="Self.FK_tbCommune_tbDistrict" FromRole="tbCommune" ToRole="tbDistrict" />
+  </EntityType>
+  <EntityType Name="tbCountry">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbProvinces" Relationship="Self.FK_tbProvince_tbCountry" FromRole="tbCountry" ToRole="tbProvince" />
+  </EntityType>
+  <EntityType Name="tbDistrict">
+    <Key>
+      <PropertyRef Name="DisID" />
+    </Key>
+    <Property Name="DisID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ProID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbCommunes" Relationship="Self.FK_tbCommune_tbDistrict" FromRole="tbDistrict" ToRole="tbCommune" />
+    <NavigationProperty Name="tbProvince" Relationship="Self.FK_tbDistrict_tbProvince" FromRole="tbDistrict" ToRole="tbProvince" />
+  </EntityType>
+  <EntityType Name="tbEmployee">
+    <Key>
+      <PropertyRef Name="empID" />
+    </Key>
+    <Property Name="empID" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDCard" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentAddress" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="PerAddress" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbParameterSetting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CREATEBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Table" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbParent">
+    <Key>
+      <PropertyRef Name="ParID" />
+    </Key>
+    <Property Name="ParID" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MotherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbStudents" Relationship="Self.FK_tbStudent_tbParent" FromRole="tbParent" ToRole="tbStudent" />
+  </EntityType>
+  <EntityType Name="tbPermission">
+    <Key>
+      <PropertyRef Name="pID" />
+    </Key>
+    <Property Name="pID" Type="Decimal" Precision="4" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PermissionType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="canAdd" Type="Boolean" />
+    <Property Name="canUpdate" Type="Boolean" />
+    <Property Name="canDelete" Type="Boolean" />
+    <Property Name="canView" Type="Boolean" />
+    <Property Name="createdby" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="createdDate" Type="DateTime" Precision="3" />
+    <Property Name="modifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="modifiedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbPhoto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreateBy_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbStudents" Relationship="Self.FKPhoto" FromRole="tbPhoto" ToRole="tbStudent" />
+  </EntityType>
+  <EntityType Name="tbProvince">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="couID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbCountry" Relationship="Self.FK_tbProvince_tbCountry" FromRole="tbProvince" ToRole="tbCountry" />
+    <NavigationProperty Name="tbDistricts" Relationship="Self.FK_tbDistrict_tbProvince" FromRole="tbProvince" ToRole="tbDistrict" />
+  </EntityType>
+  <EntityType Name="tbStudent">
+    <Key>
+      <PropertyRef Name="stdID" />
+    </Key>
+    <Property Name="stdID" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="ClassID" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="ParID" Type="Decimal" Precision="20" Scale="0" />
+    <Property Name="Address" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CurrenctAddress" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="PreAddress" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="catID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="Photo" Type="Int32" />
+    <Property Name="HouseNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Father_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Mother_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbClass" Relationship="Self.FK_tbStudent_tbClass" FromRole="tbStudent" ToRole="tbClass" />
+    <NavigationProperty Name="tbParent" Relationship="Self.FK_tbStudent_tbParent" FromRole="tbStudent" ToRole="tbParent" />
+    <NavigationProperty Name="tbPhoto" Relationship="Self.FKPhoto" FromRole="tbStudent" ToRole="tbPhoto" />
+    <NavigationProperty Name="tbVillage" Relationship="Self.FK_tbStudent_tbVillage" FromRole="tbStudent" ToRole="tbVillage" />
+    <NavigationProperty Name="tbStudentCategory" Relationship="Self.FKCatID" FromRole="tbStudent" ToRole="tbStudentCategory" />
+  </EntityType>
+  <EntityType Name="tbStudentCategory">
+    <Key>
+      <PropertyRef Name="catID" />
+    </Key>
+    <Property Name="catID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedBy_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbStudents" Relationship="Self.FKCatID" FromRole="tbStudentCategory" ToRole="tbStudent" />
+  </EntityType>
+  <EntityType Name="tbTeamWork">
+    <Key>
+      <PropertyRef Name="TeamWorkID" />
+    </Key>
+    <Property Name="TeamWorkID" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="AssignedByID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Deadline" Type="DateTime" Precision="3" />
+    <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbVillage">
+    <Key>
+      <PropertyRef Name="ViID" />
+    </Key>
+    <Property Name="ViID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Zip" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CommuneID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Decimal" Precision="12" Scale="0" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tbStudents" Relationship="Self.FK_tbStudent_tbVillage" FromRole="tbVillage" ToRole="tbStudent" />
+  </EntityType>
+  <EntityType Name="v_GetStudentList">
+    <Key>
+      <PropertyRef Name="stdID" />
+    </Key>
+    <Property Name="stdID" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Current_Address" Type="String" MaxLength="605" FixedLength="false" Unicode="true" />
+    <Property Name="Previous_Address" Type="String" MaxLength="504" FixedLength="false" Unicode="true" />
+    <Property Name="Descriptions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Father_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Mother_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_tbStudent_tbClass">
+    <End Role="tbClass" Type="Self.tbClass" Multiplicity="0..1" />
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbClass">
+        <PropertyRef Name="ClassID" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="ClassID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbCommune_tbDistrict">
+    <End Role="tbDistrict" Type="Self.tbDistrict" Multiplicity="0..1" />
+    <End Role="tbCommune" Type="Self.tbCommune" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDistrict">
+        <PropertyRef Name="DisID" />
+      </Principal>
+      <Dependent Role="tbCommune">
+        <PropertyRef Name="DisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbProvince_tbCountry">
+    <End Role="tbCountry" Type="Self.tbCountry" Multiplicity="0..1" />
+    <End Role="tbProvince" Type="Self.tbProvince" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCountry">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="tbProvince">
+        <PropertyRef Name="couID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbDistrict_tbProvince">
+    <End Role="tbProvince" Type="Self.tbProvince" Multiplicity="0..1" />
+    <End Role="tbDistrict" Type="Self.tbDistrict" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbProvince">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="tbDistrict">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbStudent_tbParent">
+    <End Role="tbParent" Type="Self.tbParent" Multiplicity="0..1" />
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbParent">
+        <PropertyRef Name="ParID" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="ParID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPhoto">
+    <End Role="tbPhoto" Type="Self.tbPhoto" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbPhoto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="Photo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbStudent_tbVillage">
+    <End Role="tbVillage" Type="Self.tbVillage" Multiplicity="0..1" />
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbVillage">
+        <PropertyRef Name="ViID" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="Address" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKCatID">
+    <End Role="tbStudentCategory" Type="Self.tbStudentCategory" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbStudent" Type="Self.tbStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbStudentCategory">
+        <PropertyRef Name="catID" />
+      </Principal>
+      <Dependent Role="tbStudent">
+        <PropertyRef Name="catID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SRMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbBranches" EntityType="Self.tbBranch" />
+    <EntitySet Name="tbClasses" EntityType="Self.tbClass" />
+    <EntitySet Name="tbCommunes" EntityType="Self.tbCommune" />
+    <EntitySet Name="tbCountries" EntityType="Self.tbCountry" />
+    <EntitySet Name="tbDistricts" EntityType="Self.tbDistrict" />
+    <EntitySet Name="tbEmployees" EntityType="Self.tbEmployee" />
+    <EntitySet Name="tbParameterSettings" EntityType="Self.tbParameterSetting" />
+    <EntitySet Name="tbParents" EntityType="Self.tbParent" />
+    <EntitySet Name="tbPermissions" EntityType="Self.tbPermission" />
+    <EntitySet Name="tbPhotoes" EntityType="Self.tbPhoto" />
+    <EntitySet Name="tbProvinces" EntityType="Self.tbProvince" />
+    <EntitySet Name="tbStudents" EntityType="Self.tbStudent" />
+    <EntitySet Name="tbStudentCategories" EntityType="Self.tbStudentCategory" />
+    <EntitySet Name="tbTeamWorks" EntityType="Self.tbTeamWork" />
+    <EntitySet Name="tbVillages" EntityType="Self.tbVillage" />
+    <EntitySet Name="v_GetStudentList" EntityType="Self.v_GetStudentList" />
+    <AssociationSet Name="FK_tbStudent_tbClass" Association="Self.FK_tbStudent_tbClass">
+      <End Role="tbClass" EntitySet="tbClasses" />
+      <End Role="tbStudent" EntitySet="tbStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbCommune_tbDistrict" Association="Self.FK_tbCommune_tbDistrict">
+      <End Role="tbDistrict" EntitySet="tbDistricts" />
+      <End Role="tbCommune" EntitySet="tbCommunes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbProvince_tbCountry" Association="Self.FK_tbProvince_tbCountry">
+      <End Role="tbCountry" EntitySet="tbCountries" />
+      <End Role="tbProvince" EntitySet="tbProvinces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbDistrict_tbProvince" Association="Self.FK_tbDistrict_tbProvince">
+      <End Role="tbProvince" EntitySet="tbProvinces" />
+      <End Role="tbDistrict" EntitySet="tbDistricts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbStudent_tbParent" Association="Self.FK_tbStudent_tbParent">
+      <End Role="tbParent" EntitySet="tbParents" />
+      <End Role="tbStudent" EntitySet="tbStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FKPhoto" Association="Self.FKPhoto">
+      <End Role="tbPhoto" EntitySet="tbPhotoes" />
+      <End Role="tbStudent" EntitySet="tbStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbStudent_tbVillage" Association="Self.FK_tbStudent_tbVillage">
+      <End Role="tbVillage" EntitySet="tbVillages" />
+      <End Role="tbStudent" EntitySet="tbStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FKCatID" Association="Self.FKCatID">
+      <End Role="tbStudentCategory" EntitySet="tbStudentCategories" />
+      <End Role="tbStudent" EntitySet="tbStudents" />
+    </AssociationSet>
+    <FunctionImport Name="fn_GetAddressTableByVillage" IsComposable="true" ReturnType="Collection(SMSModel.fn_GetAddressTableByVillage_Result)">
+      <Parameter Name="vilID" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

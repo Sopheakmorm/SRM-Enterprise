@@ -1,0 +1,18 @@
+﻿.label-alignment {
+    text-align: right;
+    font-size: large;
+}
+.TextBox-alignment {
+    text-align: left;
+    font-size: large;
+}
+.buttonInGrid {
+    font-size: 20px;
+    color: green;
+}
+.form-control {
+    color: cornflowerblue;
+}
+.textbox-markup {
+    color: aquamarine;
+}

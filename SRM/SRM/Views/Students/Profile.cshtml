@@ -1,0 +1,37 @@
+﻿@using System.Globalization
+@model SRM.Models.v_GetStudentList
+<div class="dialog_info"></div>
+<script type="text/javascript">
+    var modal = new bs.ModalDialog({
+        /* optional parameters */
+        backdrop: 'static',
+        keyboard: false,
+        appendTo: '.dialog_info',
+        headerText: 'Detail Inoformation',
+        content:    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","ID :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.stdID.ToString(CultureInfo.InvariantCulture), htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Full Name :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Name, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Gender :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Gender, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Date of Birth :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.DOB, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Phone :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.ContactPhone, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Father Name :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Father_name, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Mother Name :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Mother_name, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Class :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Class, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Description :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Descriptions, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Cur. Address :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Current_Address, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>' +
+                    '<div class="row col-md-12 col-sm-12"><div class="col-md-3 col-sm-3">@Html.Label("","Pre. Address :",htmlAttributes:new {@class="pull-right"})</div>@Html.Label("",Model.Previous_Address, htmlAttributes: new { @class = "col-md-6 col-sm-6" })</div>',
+        actionButtonText: 'OK',
+        actionButtonClass: 'btn-primary',
+        contentTemplateId: null,
+        bindingData: null,
+        largeModal: false
+    });
+
+    modal.show(function() {
+        console.log('modal opened');
+    });
+
+    modal.on('submitted', function (e) {
+        console.log('modal closed');
+        modal.hide();
+    });
+</script>
